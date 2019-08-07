@@ -1,0 +1,84 @@
+[
+    {
+        "active": true,
+        "visible": true,
+        "collideBottom": true,
+        "collideLeft": true,
+        "collideRight": true,
+        "collideTop": true,
+        "on": true,
+        "particleBringToTop": true,
+        "radial": true,
+        "frame": {
+            "frames": [
+                "circle",
+                "line",
+                "triangle",
+                "circlesmall",
+                "wobbly",
+                "arc",
+                "cross",
+                "square"
+            ],
+            "cycle": false,
+            "quantity": 1
+        },
+        "frequency": 2000,
+        "gravityX": 0,
+        "gravityY": 0,
+        "maxParticles": 15,
+        "timeScale": 1,
+        "blendMode": 0,
+        "accelerationX": {
+            "ease": "Linear",
+            "min": -5,
+            "max": 5
+        },
+        "accelerationY": {
+            "ease": "Linear",
+            "min": -5,
+            "max": 5
+        },
+        "alpha": 1,
+        "angle": {
+            "ease": "Cubic.easeOut",
+            "start": 0,
+            "end": 360
+        },
+        "bounce": 0,
+        "delay": 0,
+        "lifespan": 40000,
+        "maxVelocityX": 10,
+        "maxVelocityY": 10,
+        "moveToX": 0,
+        "moveToY": 0,
+        "quantity": 1,
+        "rotate": {
+            "ease": "Linear",
+            "min": 0,
+            "max": 360
+        },
+        "scale": 0.7,
+        "speed": 0,
+        "x": {
+            "ease": "Linear",
+            "min": 0,
+            "max": 600
+        },
+        "y": {
+            "ease": "Linear",
+            "min": 0,
+            "max": 600
+        },
+        "tint": [
+            14551819,
+            8133311,
+            2545815,
+            14464537,
+            16748800,
+            16218623,
+            16766322,
+            7401781
+        ]
+    }
+]

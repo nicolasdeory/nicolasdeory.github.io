@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,400" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+        integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <script src="js/phaser.min.js"></script>
+    <script src="js/jquery.smoothState.js"></script>
+    <script src="js/page.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="spinner-2.css" />
+    <title>Nicolás de Ory</title>
+</head>
+
+<body>
+    <div id="game-background"></div>
+    <div class="section-header"></div>
+    <div id="grid-container" class="grid-container">
+        <div id="section-index">0</div>
+        <div class="main-grid">
+            <div class="square fadeable col-1" id="main-square">
+                <div class="main-square-box">
+                    <div class="main-square-content">
+                        <div class="main-square-title">Nicolás de Ory</div>
+                        <div class="main-square-subtitle">Software Engineering Student</div>
+                        <div class="hor-separator"></div>
+                        <div class="main-square-text">Hey there! I'm blah blah blah...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="square secondary-square fadeable col-2" style="animation-delay: 0.2s">
+                <div class="vert-separator one"></div>
+                <div class="vert-separator two"></div>
+                <div class="language-word top-left">C#</div>
+                <div class="language-word top-right">Java</div>
+                <div class="language-word bottom-left">C++</div>
+                <div class="language-word bottom-right">JS</div>
+                <div class="midtext-container">
+                    <div class="mid-text">Languages</div>
+                </div>
+            </div>
+            <div class="square secondary-square fadeable col-3" style="animation-delay: 0.4s">
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/nicolasdeory"
+                    class="language-word top font-small2">
+                    <img class="net-icon" src="img/github.svg" />
+                    <span class="padded">GitHub</span></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://stackoverflow.com/users/4694364/nico-de-ory"
+                    class="language-word bottom font-small2"><img class="net-icon" src="img/stackoverflow.png" />
+                    <span class="padded">Stack Overflow</span> </a>
+                <div class="midtext-container" id="network-square">
+                    <div class="mid-text">Networks</div>
+                </div>
+            </div>
+            <div class="square secondary-square fadeable col-2" style="animation-delay: 0.6s">
+                <div class="vert-separator one"></div>
+                <div class="vert-separator two"></div>
+                <div class="language-word top-left font-small1"><img class="icon" src="img/unity.png" /></div>
+                <div class="language-word top-right font-small1"><img class="icon" src="img/unreal.png" /></div>
+                <div class="language-word bottom-left font-small1"><img class="icon" src="img/xamarin.png" /></div>
+                <div class="language-word bottom-right font-small1">Web</div>
+                <div class="midtext-container">
+                    <div class="mid-text">Technologies</div>
+                </div>
+            </div>
+            <div class="square secondary-square fadeable col-3" style="animation-delay: 0.8s">
+                <div class="contact-square">
+                    <div>Any questions?</div>
+                    <noscript class="js-email-warning">You must have Javascript enabled to see my e-mail.</noscript>
+                    <a href="javascript:decryptEmail('ZGVvcnluaWNvbGFzQGdtYWlsLmNvbQ==');">Drop me an email.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img id="nav-left" class="nav-arrow left" src="img/arrow_right.png" />
+    <img id="nav-right" class="nav-arrow fadeable" src="img/arrow_right.png" />
+    <div class="loader" id="page-loading-spinner"></div>
+
+</body>
+
+</html>
