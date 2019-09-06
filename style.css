@@ -4,6 +4,7 @@
     --noOfColumns: 3;
 
     /*--rowHeight: calc((var(--wrapperWidth) - (3 * var(--gutter))) / 4);*/
+    --rowHeight: calc(300px + var(--gutter));
 
     --ratioA: 1;
     --ratioB: 1;
@@ -65,7 +66,7 @@ body{
     justify-content: center;
     /*grid-template-columns: repeat(4, 1fr);*/
     grid-template-columns: repeat(auto-fit, 320px);
-    grid-auto-rows: 320px;
+    grid-auto-rows: var(--rowHeight);
     grid-gap: var(--gutter);
     grid-auto-flow: dense;
     /*grid-auto-rows: 50% 50%;*/
@@ -156,7 +157,6 @@ body{
     height:100%;
     display:flex;
     justify-content: start;
-    padding: 10% 0 10% 0;
     flex-direction: column;
     left: auto;
     right: auto; /* ???*/
@@ -174,6 +174,62 @@ body{
     bottom: 5%;
     left: 10px;
     right: 10px;
+}
+
+.project-title-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    padding: 0 25px 0 25px;
+    transition: 0.2s;
+}
+.project-title-box {
+    background-color: #fffd;
+    font-size: 20pt;
+    font-weight: 500;
+    max-width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
+    padding: 10px;
+}
+
+.project-container:hover .project-title-container {
+    transform: translateY(-125%)
+}
+
+.project-description-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.project-description-box {
+    box-sizing: border-box;
+    background-color: #000b;
+    transition: 0.2s;
+    position: absolute;
+    bottom: 0%;
+    color: white;
+    width: 80%;
+    left: 50%;
+    height: 42%;
+    padding: 15px;
+    transform: translateX(-50%);
+    opacity: 0;
+    font-size: 12pt;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-container:hover .project-description-box {
+    bottom: 10%;
+    opacity: 1;
 }
 
 .project-background-img {
@@ -317,14 +373,6 @@ body{
     opacity: 0;
 }
 
-.midtext-container:hover .mid-text {
-    opacity: 0;
-}
-
-.midtext-container:hover .mid-text-alt {
-    opacity: 1;
-}
-
 .secondary-square {
     position: relative;
     /*grid-row-start:1;
@@ -341,26 +389,27 @@ body{
 
 .contact-square {
     background-color:#efefef;
+    font-family: "Poppins";
+    font-size: 20pt;
     width:100%;
     height: 100%;
     text-align: center;
     position: relative;
 }
 
-.contact-square-content {
-    display: flex;
-    top: 50%;
-    transform: translateY(-50%);
+.contact-square div {
+    position: absolute;
+    top: 30%;
     left: 0;
     right: 0;
-    position: absolute;
-    justify-content: center;
-    flex-flow: column;
-    font-family: "Poppins";
-    font-size: 20pt;
 }
 
 .contact-square a {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    right: 0;
     font-weight: bold;
 }
 
@@ -432,40 +481,6 @@ a {
     #grid-container {
         height: 84vh; 
         top: 58%;
-    }
-
-    .square {
-        min-width: 240px;
-    }
-
-    .main-grid {
-        grid-template-columns: repeat(auto-fit, 240px);
-        grid-auto-rows: 240px;
-    }
-
-    .main-square-title {
-        font-size: 19.5pt;
-        font-weight: 500;
-    }
-
-    .main-square-subtitle {
-        font-size: 11pt;
-    }
-
-    .mid-text {
-        font-size: 19pt;
-    }
-
-    .font-small1 {
-        font-size: 20pt;
-    }
-
-    .font-small2 {
-        font-size: 15pt;
-    }
-
-    .contact-square-content {
-        font-size: 16pt;
     }
 }
 @media only screen and (max-width: 900px) {
