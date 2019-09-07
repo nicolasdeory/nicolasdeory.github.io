@@ -228,7 +228,7 @@ body{
 }
 
 .project-container:hover .project-description-box {
-    bottom: 10%;
+    bottom: 9%;
     opacity: 1;
 }
 
