@@ -62,14 +62,17 @@ body{
 
 .main-grid {
     width: 80%;
-    display: grid;
     justify-content: center;
-    /*grid-template-columns: repeat(4, 1fr);*/
+    display: grid;
+    display: -ms-grid;
     grid-template-columns: repeat(auto-fit, 320px);
+    -ms-grid-template-columns: repeat(auto-fit, 320px);
     grid-auto-rows: var(--rowHeight);
+    -ms-grid-auto-rows: var(--rowHeight);
     grid-gap: var(--gutter);
+    -ms-grid-gap: var(--gutter);
     grid-auto-flow: dense;
-    /*grid-auto-rows: 50% 50%;*/
+    -ms-grid-auto-flow: dense;
 }
 
 .square {
@@ -92,7 +95,9 @@ body{
 
 #main-square {
     grid-column: span 2;
+    -ms-grid-column: span 2;
     grid-row: span 2;
+    -ms-grid-row: span 2;
     background-size: cover;
     background-image: url("img/me.jpg");
 }
@@ -375,8 +380,6 @@ body{
 
 .secondary-square {
     position: relative;
-    /*grid-row-start:1;
-    grid-row-end: 3;*/
     background-color:#efefef;
 }
 
