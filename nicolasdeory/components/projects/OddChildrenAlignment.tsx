@@ -6,7 +6,7 @@ export default function OddChildrenAlignment({
   children: JSX.Element[];
 }) {
   const newChildren = children.map((c, i) => {
-    return React.cloneElement(c, { isOdd: i % 2 !== 0 });
+    return React.cloneElement(c, { key: i, isOdd: i % 2 !== 0 });
   });
   return <>{newChildren}</>;
 }

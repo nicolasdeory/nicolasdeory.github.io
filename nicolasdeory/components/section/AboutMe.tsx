@@ -1,11 +1,28 @@
 import { HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
+import { useContext } from "react";
+import { Element } from "react-scroll";
+import { Waypoint } from "react-waypoint";
+import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
 import Section from "./Section";
 
 export default function AboutMe() {
+  const { headerBreadcrumb, setHeaderBreadcrumb } = useContext(
+    HeaderBreadcrumbContext
+  );
+
   return (
-    <Section title="About me" mt="20px">
+    <Section title="About me" mt="20px" id="about-me">
+      <Waypoint
+        onEnter={() => {
+          setHeaderBreadcrumb("About me");
+        }}
+        onLeave={(v) => {
+          if (v.currentPosition === Waypoint.below) setHeaderBreadcrumb(null);
+        }}
+      />
       <HStack maxW="1000px" spacing="80px" fontSize="lg">
         <Image src="profile_pic1.jpg" alt="A photo of Nicolás" h="400px" />
+
         <VStack align="start" textAlign="justify">
           <Text>
             My name is Nicolás de Ory Carmona. You’re welcome to call me Nico

@@ -1,7 +1,9 @@
 import { Box, Flex, HStack, Image, VStack } from "@chakra-ui/react";
 import { motion, useAnimation, Variants } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InView } from "react-intersection-observer";
+import { Waypoint } from "react-waypoint";
+import HeaderBreadcrumbContext from "../components/context/HeaderBreadcrumbContext";
 import Header from "../components/header/Header";
 import BlogContainer from "../components/hero/BlogContainer";
 import BlogPostLink from "../components/hero/BlogPostLink";
@@ -23,6 +25,8 @@ const MotionBox = motion(Box);
 
 export default function Home() {
   const [inView, setInView] = useState(false);
+  const [headerBreadcrumb, setHeaderBreadcrumb] = useState(null);
+  const value = { headerBreadcrumb, setHeaderBreadcrumb };
 
   const controls = useAnimation();
 
@@ -40,43 +44,45 @@ export default function Home() {
 
   return (
     <Box bg="bg" w="100%" minH="100vh" color="text.body">
-      <Header />
-      <Box px="85px" pb="100px">
-        <Box position="relative">
-          <Flex h="calc(100vh - 80px)" justify="center" direction="column">
-            <HStack justify="space-between" spacing="60px" mb="150px">
-              <HeroDescription />
-              <BlogContainer>
-                <BlogPostLink date={new Date("2021-07-21")} url="aa">
-                  Simple IPC using Named Pipes in .NET Core
-                </BlogPostLink>
-                <BlogPostLink date={new Date("2021-07-21")} url="aa">
-                  Simple IPC using Named Pipes in .NET Core
-                </BlogPostLink>
-                <BlogPostLink date={new Date("2021-07-21")} url="aa">
-                  Simple IPC using Named Pipes in .NET Core
-                </BlogPostLink>
-              </BlogContainer>
-            </HStack>
-          </Flex>
-          <MotionBox
-            variants={chevronVariants}
-            animate={controls}
-            position="absolute"
-            bottom="50px"
-            left="50%"
-            transform="translateX(-50%)"
-          >
-            <Image src="down-chevron.svg" alt="Down chevron" w="20px" />
-          </MotionBox>
+      <HeaderBreadcrumbContext.Provider value={value}>
+        <Header />
+        <Box px="85px" pb="100px">
+          <Box position="relative">
+            <Flex h="calc(100vh - 80px)" justify="center" direction="column">
+              <HStack justify="space-between" spacing="60px" mb="150px">
+                <HeroDescription />
+                <BlogContainer>
+                  <BlogPostLink date={new Date("2021-07-21")} url="aa">
+                    Simple IPC using Named Pipes in .NET Core
+                  </BlogPostLink>
+                  <BlogPostLink date={new Date("2021-07-21")} url="aa">
+                    Simple IPC using Named Pipes in .NET Core
+                  </BlogPostLink>
+                  <BlogPostLink date={new Date("2021-07-21")} url="aa">
+                    Simple IPC using Named Pipes in .NET Core
+                  </BlogPostLink>
+                </BlogContainer>
+              </HStack>
+            </Flex>
+            <MotionBox
+              variants={chevronVariants}
+              animate={controls}
+              position="absolute"
+              bottom="50px"
+              left="50%"
+              transform="translateX(-50%)"
+            >
+              <Image src="down-chevron.svg" alt="Down chevron" w="20px" />
+            </MotionBox>
+          </Box>
+          <InView onChange={(inView) => setInView(inView)}>
+            <AboutMe />
+          </InView>
+          <VStack mt="200px" spacing="200px">
+            <FeaturedProjects />
+          </VStack>
         </Box>
-        <InView onChange={(inView) => setInView(inView)}>
-          <AboutMe />
-        </InView>
-        <VStack mt="200px" spacing="200px">
-          <FeaturedProjects />
-        </VStack>
-      </Box>
+      </HeaderBreadcrumbContext.Provider>
     </Box>
   );
 }
