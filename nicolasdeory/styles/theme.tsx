@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
+import tinycolor from "tinycolor2";
 
 const breakpoints = createBreakpoints({
   sm: "300px",
@@ -25,6 +26,15 @@ const Button = {
         bg: "button.dark.active"
       }
     },
+    outline: {
+      _hover: {
+        bg: "button.outline.hover"
+      },
+      _active: {
+        bg: "button.outline.active",
+        color: "white"
+      }
+    }
   },
   defaultProps: {
     variant: "dark",
@@ -34,29 +44,28 @@ const Button = {
 const Link = {
   baseStyle: {
     _focus: { boxShadow: "none" },
-    userSelect: "none"
   },
   variants: {
     dark: {
-      color: "#222",
+      color: "text.body",
       fontWeight: "semibold",
       _hover: {
-        color: "#666",
+        color: "link.hover",
         textDecoration: "none"
       },
       _active: {
-        color: "#63bb3e"
+        color: "link.active"
       }
     },
     darkunderline: {
       textDecoration: "underline",
-      color: "#222",
+      color: "link.text",
       fontWeight: "semibold",
       _hover: {
-        color: "#666"
+        color: "link.hover"
       },
       _active: {
-        color: "#63bb3e"
+        color: "link.active"
       }
     }
   },
@@ -65,11 +74,18 @@ const Link = {
   }
 }
 
+const bgColor = "#FAFFF9";
+
 const theme = extendTheme({
   colors: {
     text: {
       body: "#222",
       light: "#8C8C8C",
+    },
+    link: {
+      text: "#222",
+      hover: "#666",
+      active: "#5bcc2b"
     },
     line: {
       light: "#D9E2D5",
@@ -79,12 +95,19 @@ const theme = extendTheme({
         bg: "#222",
         hover: "#333",
         active: "#111",
+      },
+      outline: {
+        hover: "#0001",
+        active: "#222"
       }
     },
     body: "#222",
-    bg: "#FAFFF9",
+    bg: bgColor,
+    header: {
+      menu: tinycolor(bgColor).darken(3).desaturate(70).toString(),
+    }
   },
-  components: { Button, Link },
+  components: { Button, CloseButton: Button, Link },
   fonts: {
     heading: "Source Sans Pro",
     body: "Source Sans Pro",

@@ -1,93 +1,108 @@
 import {
   Box,
   Button,
+  CloseButton,
   Flex,
   Heading,
   HStack,
+  Icon,
+  IconButton,
   Link,
+  Portal,
   Text,
+  useBoolean,
+  VStack,
 } from "@chakra-ui/react";
-import { faGithub, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGit,
+  faGithub,
+  faStackOverflow,
+} from "@fortawesome/free-brands-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, Variants } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
 import LinkScroll from "../link/LinkScroll";
+import HeaderIconLink from "./HeaderIconLink";
+import HeaderLink from "./HeaderLink";
+import HeaderLinks from "./HeaderLinks";
+import MainName from "./MainName";
 
-const MotionHStack = motion(HStack);
+const MotionBox = motion(Box);
+
+const headerMenuVariants: Variants = {
+  open: {
+    opacity: 1,
+    y: -1,
+    zIndex: 0,
+    transition: {duration: 0.1}
+  },
+  closed: {
+    opacity: 0,
+    y: -10,
+    zIndex: -999,
+    transition: {duration: 0.1, zIndex: {delay:0.1}},
+  }
+}
 
 export default function Header() {
-  const { headerBreadcrumb, setHeaderBreadcrumb } = useContext(
-    HeaderBreadcrumbContext
-  );
-
-  const controls = useAnimation();
-
-  const [headerBreadcrumbText, setHeaderBreadcrumbText] = useState(null);
-
-  useEffect(() => {
-    async function doAnim() {
-      console.log(headerBreadcrumb);
-      await controls.start({ opacity: 0, transition: { duration: 0.1 } });
-      setHeaderBreadcrumbText(headerBreadcrumb);
-      if (headerBreadcrumb) {
-        await controls.start({ opacity: 1, transition: { duration: 0.1 } });
-      }
-    }
-    doAnim();
-  }, [headerBreadcrumb, controls]);
+  const [menuOpen, setMenuOpen] = useBoolean(false);
 
   return (
-    <Box
-      bg="bg"
-      h="80px"
-      position="sticky"
-      top="0"
-      w="100%"
-      px="85px"
-      py="20px"
-      zIndex="999"
-      boxShadow="0 0 2px #0004"
-    >
-      <Flex direction="row" justify="space-between" align="center">
-        <HStack>
-          <Heading size="md" fontWeight="semibold" cursor="pointer" onClick={() => scrollTo({top:0, behavior: "smooth"})}>
-            Nicolás de Ory
-          </Heading>
-          <MotionHStack initial={{ opacity: 0 }} animate={controls}>
-            <Text>•</Text>
-            <Text fontWeight="semibold">{headerBreadcrumbText}</Text>
-          </MotionHStack>
-        </HStack>
-        <HStack spacing="40px">
-          <Link as={LinkScroll} fontWeight="semibold" variant="dark" to="about-me" >
-            About me
-          </Link>
-          <Link as={LinkScroll} fontWeight="semibold" variant="dark" to="projects">
-            Projects
-          </Link>
-          <Link as={LinkScroll} fontWeight="semibold" variant="dark" to="blog">
-            Blog
-          </Link>
-          <HStack spacing="10px">
-            <Link
-              fontSize="xl"
-              href="https://stackoverflow.com/users/4694364/nicol%c3%a1s-de-ory"
-              isExternal
-            >
-              <FontAwesomeIcon icon={faStackOverflow} />
-            </Link>
-            <Link
-              fontSize="xl"
-              href="https://github.com/nicolasdeory"
-              isExternal
-            >
-              <FontAwesomeIcon icon={faGithub} />
-            </Link>
+    <>
+      <Box
+        bg="bg"
+        h="80px"
+        position={{base: "fixed", md: "sticky"}}
+        top="0"
+        w="100%"
+        px={{base: "40px", md: "85px"}}
+        py="20px"
+        zIndex="999"
+        boxShadow="0 0 2px #0004"
+      >
+        <Flex direction="row" justify="space-between" align="center" h="100%">
+          <MainName />
+          <HStack spacing="40px" display={{ base: "none", lg: "flex" }}>
+            <HeaderLinks />
           </HStack>
-          <Button>Contact me</Button>
-        </HStack>
-      </Flex>
-    </Box>
+          <IconButton
+            onClick={() => setMenuOpen.toggle()}
+            variant="outline"
+            aria-label="Menu button"
+            icon={<FontAwesomeIcon icon={faBars} />}
+            display={{ base: "inherit", lg: "none" }}
+          />
+        </Flex>
+      </Box>
+      <Portal>
+        <MotionBox
+          variants={headerMenuVariants}
+          display={{ base: "inherit", lg: "none" }}
+          bg="header.menu"
+          w="100%"
+          pt="20px"
+          position="fixed"
+          top="80px"
+          boxShadow="0 0 2px #0004"
+          initial="closed"
+          animate={menuOpen ? "open" : "closed"}
+        >
+          <VStack>
+            <HeaderLinks onHeaderLinkClicked={() => setMenuOpen.off()} />
+          </VStack>
+          <CloseButton
+            aria-label="Close menu"
+            variant="none"
+            h="40px"
+            w="100%"
+            mt="20px"
+            borderRadius="0"
+            onClick={() => setMenuOpen.toggle()}
+          />
+        </MotionBox>
+      </Portal>
+    </>
   );
 }

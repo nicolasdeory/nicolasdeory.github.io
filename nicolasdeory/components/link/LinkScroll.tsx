@@ -4,14 +4,21 @@ import { Link as LinkScrolling } from "react-scroll";
 type LinkScrollProps = {
   to: string;
   children: string;
+  onClick?: () => void;
 };
 
-export default function LinkScroll({ to, children }: LinkScrollProps) {
+export default function LinkScroll({ to, children, onClick }: LinkScrollProps) {
   return (
-    <LinkScrolling to={to} smooth={true} offset={-150}>
-      <Link variant="dark" fontWeight="semibold">
-        {children}
-      </Link>
-    </LinkScrolling>
+    <Link
+      onClick={onClick}
+      as={LinkScrolling}
+      to={to}
+      smooth={true}
+      offset={-150}
+      variant="dark"
+      fontWeight="semibold"
+    >
+      {children}
+    </Link>
   );
 }

@@ -9,7 +9,9 @@ import BlogContainer from "../components/hero/BlogContainer";
 import BlogPostLink from "../components/hero/BlogPostLink";
 import HeroDescription from "../components/hero/HeroDescription";
 import AboutMe from "../components/section/AboutMe";
+import AllProjects from "../components/section/AllProjects";
 import FeaturedProjects from "../components/section/FeaturedProjects";
+import Blog from "../components/section/Blog";
 
 const chevronVariants: Variants = {
   hidden: { opacity: 0, transition: { duration: 0.1 } },
@@ -46,7 +48,7 @@ export default function Home() {
     <Box bg="bg" w="100%" minH="100vh" color="text.body">
       <HeaderBreadcrumbContext.Provider value={value}>
         <Header />
-        <Box px="85px" pb="100px">
+        <Box px={{base: "40px", md: "85px"}} pb="100px" pt={{base: "80px", md: "0"}}>
           <Box position="relative">
             <Flex h="calc(100vh - 80px)" justify="center" direction="column">
               <HStack justify="space-between" spacing="60px" mb="150px">
@@ -68,7 +70,7 @@ export default function Home() {
               variants={chevronVariants}
               animate={controls}
               position="absolute"
-              bottom="50px"
+              bottom={{base: "100px", md: "50px"}}
               left="50%"
               transform="translateX(-50%)"
             >
@@ -80,6 +82,8 @@ export default function Home() {
           </InView>
           <VStack mt="200px" spacing="200px">
             <FeaturedProjects />
+            <AllProjects />
+            <Blog />
           </VStack>
         </Box>
       </HeaderBreadcrumbContext.Provider>

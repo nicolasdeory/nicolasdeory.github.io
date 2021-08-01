@@ -1,29 +1,14 @@
-import { HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
-import { useContext } from "react";
-import { Element } from "react-scroll";
-import { Waypoint } from "react-waypoint";
-import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
+import { Grid, Image, Link, Text, VStack } from "@chakra-ui/react";
 import Section from "./Section";
 
 export default function AboutMe() {
-  const { headerBreadcrumb, setHeaderBreadcrumb } = useContext(
-    HeaderBreadcrumbContext
-  );
+  
 
   return (
-    <Section title="About me" mt="20px" id="about-me">
-      <Waypoint
-        onEnter={() => {
-          setHeaderBreadcrumb("About me");
-        }}
-        onLeave={(v) => {
-          if (v.currentPosition === Waypoint.below) setHeaderBreadcrumb(null);
-        }}
-      />
-      <HStack maxW="1000px" spacing="80px" fontSize="lg">
-        <Image src="profile_pic1.jpg" alt="A photo of Nicolás" h="400px" />
-
-        <VStack align="start" textAlign="justify">
+    <Section title="About me" mt="20px" id="about-me" sectionAbove={null}>
+      <Grid templateColumns={["1fr","1fr","1fr","auto 2fr"]} maxW="1000px" gap={{base: "40px", lg: "80px"}} fontSize="lg" >
+        <Image src="profile_pic1.jpg" alt="A photo of Nicolás" h="400px" mx={{base: "auto", md: "0"}}/>
+        <VStack align="start" textAlign="justify" h="100%" justify="center">
           <Text>
             My name is Nicolás de Ory Carmona. You’re welcome to call me Nico
             :-)
@@ -34,7 +19,7 @@ export default function AboutMe() {
           </Text>
           <Text>
             Throughout these years my main focus has been on experimenting and
-            learning with the main goal of creating <b>production-ready</b>,
+            learning different technologies with the main goal of creating <b>production-ready</b>,
             maintainable code while always striving to <b>create value</b> for
             the client.
           </Text>
@@ -49,7 +34,7 @@ export default function AboutMe() {
             <Link>shoot me an email</Link>.
           </Text>
         </VStack>
-      </HStack>
+      </Grid>
     </Section>
   );
 }

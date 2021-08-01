@@ -44,9 +44,8 @@ export default function Project({
         </Text>
         <Link href={url}>Read more</Link>
       </Box>
-      <Box position="relative" w="100%" >
-        <Box mt="40px">
-          <Image
+      <Box position="relative" w="100%" mt="40px">
+        <Image
             variant="shadow"
             boxShadow="0 0 30px #0003"
             maxWidth="100%"
@@ -56,7 +55,6 @@ export default function Project({
             src={imageSrc}
             alt={`Project thumbnail for ${title}`}
           />
-        </Box>
       </Box>
     </Flex>
   );

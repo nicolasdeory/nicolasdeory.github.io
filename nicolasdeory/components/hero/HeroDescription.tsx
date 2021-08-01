@@ -2,18 +2,18 @@ import { Box, Heading, HStack, Image, Link, Text, VStack } from "@chakra-ui/reac
 
 export default function HeroDescription() {
   return (
-    <HStack alignItems="stretch" spacing="60px">
-      <Box w="8px" bg="line.light" />
+    <HStack alignItems="stretch" spacing={{base: "30px", md: "60px"}}>
+      <Box minW={{base: "4px", md:"8px"}} bg="line.light" />
       <Box>
         <Image
           src="https://avatars.githubusercontent.com/u/1417708?v=4"
           borderRadius="full"
-          boxSize="150px"
+          boxSize={{base: "100px", md: "150px"}}
           alt="Profile picture of Nicolás de Ory"
           mb="20px"
         />
-        <VStack spacing="20px" align="start" fontSize="xl">
-          <Heading fontStyle="italic" fontSize="30pt" fontWeight="normal">
+        <VStack spacing="20px" align="start" fontSize={{base: "md", md: "xl"}}>
+          <Heading fontStyle="italic" fontSize={{base: "20pt", md: "30pt"}} fontWeight="normal">
             Hi, I&apos;m{" "}
             <Text as="span" fontWeight="semibold">
               Nicolás
@@ -22,8 +22,7 @@ export default function HeroDescription() {
           </Heading>
           <Text>
             I&apos;m a Software Engineer from Spain.
-            <br />I am passionate about building products from the ground up and
-            creating value.
+            <br />I am passionate about building products from the ground up.
           </Text>
           <Text>
             My contributions in projects are focused around{" "}

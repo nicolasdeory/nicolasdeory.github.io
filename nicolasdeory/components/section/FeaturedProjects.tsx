@@ -1,15 +1,8 @@
-import {
-  Flex,
-  Heading,
-  HStack,
-  Image,
-  Link,
-  Portal,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import
+  {
+    VStack
+  } from "@chakra-ui/react";
 import { useContext } from "react";
-import { Waypoint } from "react-waypoint";
 import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
 import OddChildrenAlignment from "../projects/OddChildrenAlignment";
 import Project from "../projects/Project";
@@ -20,13 +13,7 @@ export default function FeaturedProjects() {
     HeaderBreadcrumbContext
   );
   return (
-    <Section title="Featured Projects" id="projects">
-      <Waypoint
-        onEnter={(v) => {
-          if (v.previousPosition === Waypoint.below)
-            setHeaderBreadcrumb("Featured Projects");
-        }}
-      />
+    <Section title="Featured Projects" id="projects" sectionAbove="About me">
       <VStack w="100%" maxW="1000px" spacing="100px">
         <OddChildrenAlignment>
           <Project
