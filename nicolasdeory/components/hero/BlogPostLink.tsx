@@ -1,9 +1,10 @@
 import { Box, Link, Text } from "@chakra-ui/react";
 
-type BlogPostLinkProps = {
+export type BlogPostLinkProps = {
     children: string,
     date: Date,
-    url: string
+    url: string,
+    title?: string,
 }
 
 export default function BlogPostLink({ children, date, url }: BlogPostLinkProps) {

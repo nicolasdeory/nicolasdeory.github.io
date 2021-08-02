@@ -1,46 +1,36 @@
-import ProjectGrid from "../projects/ProjectGrid";
-import SmallProject from "../projects/SmallProject";
+import { VStack } from "@chakra-ui/react";
+import BlogPostLinkExtended from "../blog/BlogPostLinkExtended";
 import Section from "./Section";
 
 export default function Blog() {
   return (
-    <Section
-      title="Blog"
-      id="blog"
-      sectionAbove="All Projects"
-    >
-      <ProjectGrid>
-        <SmallProject
-          title="Moovid"
-          subtitle="WEB APP – Javascript, Emscripten, Java, Spring Boot"
-          url="/project/moovid"
-          githubUrl="https://github.com/nicolasdeory/moovid"
-          gradientStart="#f12711"
-          gradientEnd="#f5af19"
+    <Section title="Blog" id="blog" sectionAbove="All Projects">
+      <VStack align="stretch" w="100%" spacing="50px" maxW="800px">
+        <BlogPostLinkExtended
+          title="Simple IPC using Named Pipes in .NET Core"
+          date={new Date()}
+          url="/2021/07/simple-ipc-named-pipes"
         >
-          A mashup webapp integrating Google Photos, Spotify and Cognitive
-          Services to create customized photo collage videos.
-        </SmallProject>
-        <SmallProject
-          title="Teamworks"
-          subtitle="WEB APP – React, Java, Spring Boot"
-          url="/project/teamworks"
-          githubUrl="https://github.com/nicolasdeory/teamworks"
-          gradientStart="#56ab2f"
-          gradientEnd="#a8e063"
+          A practical guide to implementing inter-process communication in .NET
+          Core using named pipes.
+        </BlogPostLinkExtended>
+        <BlogPostLinkExtended
+          title="Simple IPC using Named Pipes in .NET Core"
+          date={new Date()}
+          url="/2021/07/simple-ipc-named-pipes"
         >
-          A functional proof-of-concept app focused on team management,
-          fine-grained permissions, and streamlined messaging.
-        </SmallProject>
-        <SmallProject
-          title="Firelight RGB"
-          subtitle="MOBILE APP – React Native, NativeBase"
-          url="/project/firelight-app"
+          A practical guide to implementing inter-process communication in .NET
+          Core using named pipes.
+        </BlogPostLinkExtended>
+        <BlogPostLinkExtended
+          title="Simple IPC using Named Pipes in .NET Core"
+          date={new Date()}
+          url="/2021/07/simple-ipc-named-pipes"
         >
-          An app designed to control Firelight LED strips, providing powerful,
-          customized lighting effects through a user-friendly interface.
-        </SmallProject>
-      </ProjectGrid>
+          A practical guide to implementing inter-process communication in .NET
+          Core using named pipes.
+        </BlogPostLinkExtended>
+      </VStack>
     </Section>
   );
 }
