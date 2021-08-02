@@ -1,4 +1,5 @@
 import { Box, Heading, HStack, Image, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import LazyImage from "../image/LazyImage";
 
 export default function HeroDescription() {
 
@@ -8,7 +9,7 @@ export default function HeroDescription() {
     <HStack alignItems="stretch" spacing={{base: "30px", md: "60px"}}>
       <Box minW={{base: "4px", md:"8px"}} bg={lineBg} />
       <Box>
-        <Image
+        <LazyImage
           src="https://avatars.githubusercontent.com/u/1417708?v=4"
           borderRadius="full"
           boxSize={{base: "100px", md: "150px"}}

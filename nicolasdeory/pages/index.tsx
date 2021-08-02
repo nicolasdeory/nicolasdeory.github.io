@@ -21,6 +21,7 @@ import FeaturedProjects from "../components/section/FeaturedProjects";
 import Blog from "../components/section/Blog";
 import ContactMe from "../components/section/ContactMe";
 import Head from "next/head";
+import LazyImage from "../components/image/LazyImage";
 
 const chevronVariants: Variants = {
   hidden: { opacity: 0, transition: { duration: 0.1 } },
@@ -100,7 +101,7 @@ export default function Home() {
                 transform="translateX(-50%)"
                 filter={chevronFilter}
               >
-                <Image src="down-chevron.svg" alt="Down chevron" w="20px" />
+                <LazyImage src="down-chevron.svg" alt="Down chevron" w="20px" h="20px" />
               </MotionBox>
             </Box>
             <InView onChange={(inView) => setInView(inView)}>
