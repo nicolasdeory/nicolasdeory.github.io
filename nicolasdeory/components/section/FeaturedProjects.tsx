@@ -20,6 +20,7 @@ export default function FeaturedProjects() {
             title="Gestiona Residencias"
             subtitle="WEB APP – React & Next.js, Chakra UI, Typescript, Node.js"
             imageSrc="/projects/galgani1.png"
+            githubUrl="https://github.com/nicolasdeory/firelight"
             url="/project/galgani"
           >
             A custom residence management solution that simplifies bookings,
@@ -31,6 +32,7 @@ export default function FeaturedProjects() {
             subtitle="DESKTOP APP – .NET Core C#, Chromely"
             imageSrc="/projects/firelight1.png"
             url="/project/firelight"
+            githubUrl="https://github.com/nicolasdeory/firelight"
           >
             RGB lighting software for Razer Chroma and other peripherals for
             games such as League of Legends, Rocket League or Fortnite.
