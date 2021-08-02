@@ -80,6 +80,7 @@ export default function ContactMe() {
               display: "flex",
               justifyContent: "center",
             }}
+            name='contact'
             data-netlify
             data-netlify-honeypot="message-more"
           >
