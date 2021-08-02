@@ -4,17 +4,14 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  InputGroup,
-  propNames,
-  Text,
   Textarea,
   useColorModeValue,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
-import BlogPostLinkExtended from "../blog/BlogPostLinkExtended";
-import Section from "./Section";
 import * as Yup from "yup";
+import Section from "./Section";
 
 const ContactFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,22 +23,54 @@ const ContactFormSchema = Yup.object().shape({
   message: Yup.string().required("Message is required").max(1000).trim(),
 });
 
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
+
 export default function ContactMe() {
-  const lightTextColor = useColorModeValue(
-    "light.text.light",
-    "dark.text.light"
-  );
+
+  const toast = useToast();
+
+  function submitForm(values, { setSubmitting }) {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contact",
+        ...values,
+      }),
+    })
+      .then(() => {
+        toast({
+          title: "Message sent",
+          description: "I'll get back to you shortly.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          variant: "solid",
+        });
+        setSubmitting(false);
+      })
+      .catch((error) => {
+        toast({
+          title: "Error sending message",
+          description: "Sorry, something went wrong. Try again later?",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          variant: "solid",
+        });
+        setSubmitting(false);
+      });
+  }
 
   return (
     <Section title="Contact me" id="contact-me" sectionAbove="All Projects">
       <Formik
         initialValues={{ email: "", name: "", message: "" }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        onSubmit={submitForm}
         validationSchema={ContactFormSchema}
       >
         {({ isSubmitting }) => (
@@ -107,7 +136,7 @@ export default function ContactMe() {
                   </FormControl>
                 )}
               </Field>
-              <Button type="submit" size="lg" isLoading={isSubmitting}>
+              <Button variant="dark" type="submit" size="lg" isLoading={isSubmitting}>
                 Send message
               </Button>
             </VStack>

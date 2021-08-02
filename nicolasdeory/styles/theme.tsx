@@ -2,7 +2,7 @@ import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { createBreakpoints, mode } from "@chakra-ui/theme-tools";
 import tinycolor from "tinycolor2";
 
-const colMode = (props) => mode("light","dark")(props);
+const colMode = (props) => mode("light", "dark")(props);
 
 const config: ThemeConfig = {
   initialColorMode: "light",
@@ -30,7 +30,7 @@ const Button = {
         bg: colMode(props) + ".button.dark.hover",
         _disabled: {
           bg: colMode(props) + ".button.dark.bg",
-        }
+        },
       },
       _active: {
         bg: colMode(props) + ".button.dark.active",
@@ -47,7 +47,7 @@ const Button = {
     }),
   },
   defaultProps: {
-    variant: "dark",
+    variant: "outline",
   },
 };
 
@@ -84,6 +84,17 @@ const Link = {
   },
 };
 
+const Alert = {
+  parts: ['container'],
+  variants: {
+    success: {
+      container: {
+        color: "white"
+      },
+    },
+  },
+};
+
 const bgColorLight = "#FAFFF9";
 const bgColorDark = "#2B2D42";
 
@@ -106,7 +117,7 @@ const theme = extendTheme({
         light: "#D9E2D5",
       },
       card: {
-        bg: "#fff"
+        bg: "#fff",
       },
       button: {
         dark: {
@@ -118,7 +129,7 @@ const theme = extendTheme({
         outline: {
           hover: "#0001",
           active: "#222",
-          color: "white"
+          color: "white",
         },
       },
       body: "#222",
@@ -142,19 +153,19 @@ const theme = extendTheme({
         light: tinycolor(bgColorDark).lighten(10).toString(),
       },
       card: {
-        bg: tinycolor(bgColorDark).lighten(10).toString()
+        bg: tinycolor(bgColorDark).lighten(10).toString(),
       },
       button: {
         dark: {
           color: "#222",
           bg: tinycolor(darkAccent).toString(),
           hover: tinycolor(darkAccent).lighten(20).toString(),
-          active: tinycolor(darkAccent).darken(5).saturate(20).toString()
+          active: tinycolor(darkAccent).darken(5).saturate(20).toString(),
         },
         outline: {
           hover: "#0001",
           active: "#fff",
-          color: "#222"
+          color: "#222",
         },
       },
       body: "#222",
@@ -164,7 +175,7 @@ const theme = extendTheme({
       },
     },
   },
-  components: { Button, CloseButton: Button, Link },
+  components: { Button, CloseButton: Button, Link, Alert },
   fonts: {
     heading: "Source Sans Pro",
     body: "Source Sans Pro",
@@ -175,12 +186,12 @@ const theme = extendTheme({
         transition: "background, background-color 0.2s",
       },
       b: {
-        color: colMode(props) + ".text.bold"  
+        color: colMode(props) + ".text.bold",
       },
       i: {
-        color: colMode(props) + ".text.bold"  
-      }
-    })
+        color: colMode(props) + ".text.bold",
+      },
+    }),
   },
   breakpoints,
   config,

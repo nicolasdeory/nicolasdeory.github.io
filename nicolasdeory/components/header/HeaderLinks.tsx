@@ -1,13 +1,16 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { faGithub, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
 import { useCallback } from "react";
-import * as Scroll from 'react-scroll';
+import * as Scroll from "react-scroll";
 import ColorModeSwitch from "./ColorModeSwitch";
 import HeaderIconLink from "./HeaderIconLink";
 import HeaderLink from "./HeaderLink";
 
-export default function HeaderLinks({ onHeaderLinkClicked }: { onHeaderLinkClicked?: () => void }) {
-
+export default function HeaderLinks({
+  onHeaderLinkClicked,
+}: {
+  onHeaderLinkClicked?: () => void;
+}) {
   return (
     <>
       <HeaderLink to="about-me" onClick={onHeaderLinkClicked}>
@@ -29,7 +32,15 @@ export default function HeaderLinks({ onHeaderLinkClicked }: { onHeaderLinkClick
           icon={faGithub}
         />
       </HStack>
-      <Button onClick={() => Scroll.scroller.scrollTo("contact-me", {smooth: true})}>Contact me</Button>
+      <Button
+        variant="dark"
+        onClick={() => {
+          Scroll.scroller.scrollTo("contact-me", { smooth: true });
+          if (onHeaderLinkClicked) onHeaderLinkClicked();
+        }}
+      >
+        Contact me
+      </Button>
       <ColorModeSwitch />
     </>
   );
