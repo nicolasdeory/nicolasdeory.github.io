@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { Link, VStack } from "@chakra-ui/react";
 import BlogPostLinkExtended from "../blog/BlogPostLinkExtended";
 import Section from "./Section";
 
@@ -30,6 +30,7 @@ export default function Blog() {
           A practical guide to implementing inter-process communication in .NET
           Core using named pipes.
         </BlogPostLinkExtended>
+        <Link variant="dark" href="/all-posts" fontSize="xl">See all posts</Link>
       </VStack>
     </Section>
   );

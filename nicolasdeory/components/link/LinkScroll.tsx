@@ -1,4 +1,4 @@
-import { Link } from "@chakra-ui/react";
+import { As, Link } from "@chakra-ui/react";
 import { Link as LinkScrolling } from "react-scroll";
 
 type LinkScrollProps = {

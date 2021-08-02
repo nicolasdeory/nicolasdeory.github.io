@@ -31,6 +31,7 @@ export default function BlogContainer({ children }: BlogContainerProps) {
       <Link
         color="text.light"
         textDecoration="underline"
+        href="/all-posts"
       >
         See all posts
       </Link>

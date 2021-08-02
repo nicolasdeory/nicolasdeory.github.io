@@ -33,7 +33,7 @@ export default function ContactMe() {
   );
 
   return (
-    <Section title="Contact me" id="blog" sectionAbove="All Projects">
+    <Section title="Contact me" id="contact-me" sectionAbove="All Projects">
       <Formik
         initialValues={{ email: "", name: "", message: "" }}
         onSubmit={(values, actions) => {

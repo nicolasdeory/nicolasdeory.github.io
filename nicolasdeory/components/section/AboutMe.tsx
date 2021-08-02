@@ -2,7 +2,6 @@ import { Grid, Image, Link, Text, VStack } from "@chakra-ui/react";
 import Section from "./Section";
 
 export default function AboutMe() {
-  
 
   return (
     <Section title="About me" mt="20px" id="about-me" sectionAbove={null}>
