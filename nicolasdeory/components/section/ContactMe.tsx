@@ -80,6 +80,8 @@ export default function ContactMe() {
               display: "flex",
               justifyContent: "center",
             }}
+            data-netlify
+            data-netlify-honeypot="message-more"
           >
             <VStack align="stretch" spacing="20px" maxW="800px" w="100%">
               <Field name="email">
