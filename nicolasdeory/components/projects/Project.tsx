@@ -6,6 +6,7 @@ import {
   Image,
   Link,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 type ProjectProps = {
@@ -25,6 +26,9 @@ export default function Project({
   imageSrc,
   children,
 }: ProjectProps) {
+
+  const subtitleTextColor = useColorModeValue("light.text.light", "dark.text.light");
+
   return (
     <Flex
       direction="column"
@@ -36,7 +40,7 @@ export default function Project({
         <Heading fontSize="2xl" fontWeight="semibold">
           {title}
         </Heading>
-        <Text color="text.light" mt="8px">
+        <Text color={subtitleTextColor} mt="8px">
           {subtitle}
         </Text>
         <Text mt="20px" mb="10px">

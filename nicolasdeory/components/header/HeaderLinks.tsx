@@ -1,6 +1,7 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { faGithub, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
 import { useCallback } from "react";
+import ColorModeSwitch from "./ColorModeSwitch";
 import HeaderIconLink from "./HeaderIconLink";
 import HeaderLink from "./HeaderLink";
 
@@ -28,6 +29,7 @@ export default function HeaderLinks({ onHeaderLinkClicked }: { onHeaderLinkClick
         />
       </HStack>
       <Button>Contact me</Button>
+      <ColorModeSwitch />
     </>
   );
 }

@@ -11,6 +11,7 @@ import {
   Portal,
   Text,
   useBoolean,
+  useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import {
@@ -49,10 +50,13 @@ const headerMenuVariants: Variants = {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useBoolean(false);
 
+  const headerBg = useColorModeValue("light.bg","dark.bg");
+  const headerMenuBg = useColorModeValue("light.header.menu","dark.header.menu");
+
   return (
     <>
       <Box
-        bg="bg"
+        bg={headerBg}
         h="80px"
         position={{base: "fixed", md: "sticky"}}
         top="0"
@@ -80,7 +84,7 @@ export default function Header() {
         <MotionBox
           variants={headerMenuVariants}
           display={{ base: "inherit", lg: "none" }}
-          bg="header.menu"
+          bg={headerMenuBg}
           w="100%"
           pt="20px"
           position="fixed"

@@ -1,9 +1,12 @@
-import { Box, Heading, HStack, Image, Link, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, HStack, Image, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 
 export default function HeroDescription() {
+
+  const lineBg = useColorModeValue("light.line.light", "dark.line.light");
+
   return (
     <HStack alignItems="stretch" spacing={{base: "30px", md: "60px"}}>
-      <Box minW={{base: "4px", md:"8px"}} bg="line.light" />
+      <Box minW={{base: "4px", md:"8px"}} bg={lineBg} />
       <Box>
         <Image
           src="https://avatars.githubusercontent.com/u/1417708?v=4"

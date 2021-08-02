@@ -1,4 +1,4 @@
-import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import BlogPostLink from "./BlogPostLink";
 
 
@@ -7,9 +7,12 @@ type BlogContainerProps = {
 }
 
 export default function BlogContainer({ children }: BlogContainerProps) {
+  
+  const cardBg = useColorModeValue("light.card.bg", "dark.card.bg");
+  
   return (
     <Box
-      bg="#fff"
+      bg={cardBg}
       w="700px"
       h="100%"
       px="30px"

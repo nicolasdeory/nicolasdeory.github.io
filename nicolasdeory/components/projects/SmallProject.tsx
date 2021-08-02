@@ -7,6 +7,7 @@ import {
   Image,
   Link,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,10 +33,14 @@ export default function SmallProject({
   gradientEnd,
   githubUrl,
 }: ProjectProps) {
+  
+  const cardBg = useColorModeValue("light.card.bg", "dark.card.bg");
+  const subtitleTextColor = useColorModeValue("light.text.light", "dark.text.light");
+
   return (
     <Box
       boxShadow="0 0 30px #0003"
-      bg="#fff"
+      bg={cardBg}
       h="fit-content"
       maxW="500px"
       position="relative"
@@ -61,7 +66,7 @@ export default function SmallProject({
         )}
       </Flex>
 
-      <Text color="text.light" mt="8px">
+      <Text color={subtitleTextColor} mt="8px">
         {subtitle}
       </Text>
       <Text mt="20px" mb="10px">

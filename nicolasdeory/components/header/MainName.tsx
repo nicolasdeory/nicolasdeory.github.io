@@ -15,7 +15,6 @@ export default function MainName() {
 
   useEffect(() => {
     async function doAnim() {
-      console.log(headerBreadcrumb);
       await controls.start({ opacity: 0, transition: { duration: 0.1 } });
       setHeaderBreadcrumbText(headerBreadcrumb);
       if (headerBreadcrumb) {

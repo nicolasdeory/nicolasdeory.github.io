@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Image, useColorModeValue, VStack } from "@chakra-ui/react";
 import { motion, useAnimation, Variants } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { InView } from "react-intersection-observer";
@@ -44,8 +44,12 @@ export default function Home() {
     doAnim();
   }, [inView, controls]);
 
+  const textBodyColor = useColorModeValue("light.text.body", "dark.text.body");
+  const bgColor = useColorModeValue("light.bg", "dark.bg");
+  const chevronFilter = useColorModeValue("", "invert(100%)");
+
   return (
-    <Box bg="bg" w="100%" minH="100vh" color="text.body">
+    <Box bg={bgColor} w="100%" minH="100vh" color={textBodyColor}>
       <HeaderBreadcrumbContext.Provider value={value}>
         <Header />
         <Box px={{base: "40px", md: "85px"}} pb="100px" pt={{base: "80px", md: "0"}}>
@@ -73,6 +77,7 @@ export default function Home() {
               bottom={{base: "100px", md: "50px"}}
               left="50%"
               transform="translateX(-50%)"
+              filter={chevronFilter}
             >
               <Image src="down-chevron.svg" alt="Down chevron" w="20px" />
             </MotionBox>
