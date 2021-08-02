@@ -1,5 +1,6 @@
 import { Box, Heading, HStack, Image, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import LazyImage from "../image/LazyImage";
+import LinkScroll from "../link/LinkScroll";
 
 export default function HeroDescription() {
 
@@ -41,7 +42,7 @@ export default function HeroDescription() {
           </Text>
           <Text>
             Feel free to poke around and{" "}
-            <Link>shoot me a message</Link> if you have any
+            <LinkScroll to="contact-me" variant="darkunderline">shoot me a message</LinkScroll> if you have any
             questions.
           </Text>
         </VStack>

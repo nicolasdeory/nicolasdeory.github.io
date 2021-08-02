@@ -1,5 +1,6 @@
 import { Grid, Image, Link, Text, VStack } from "@chakra-ui/react";
 import LazyImage from "../image/LazyImage";
+import LinkScroll from "../link/LinkScroll";
 import Section from "./Section";
 
 export default function AboutMe() {
@@ -31,7 +32,7 @@ export default function AboutMe() {
           </Text>
           <Text>
             Thanks for dropping by! If you have any questions, feel free to{" "}
-            <Link>shoot me an email</Link>.
+            <LinkScroll to="contact-me" variant="darkunderline">shoot me an email</LinkScroll>.
           </Text>
         </VStack>
       </Grid>

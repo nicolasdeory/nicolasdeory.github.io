@@ -1,4 +1,4 @@
-import { As, Link } from "@chakra-ui/react";
+import { As, Link, LinkProps } from "@chakra-ui/react";
 import { Link as LinkScrolling } from "react-scroll";
 
 type LinkScrollProps = {
@@ -7,7 +7,7 @@ type LinkScrollProps = {
   onClick?: () => void;
 };
 
-export default function LinkScroll({ to, children, onClick }: LinkScrollProps) {
+export default function LinkScroll({ to, children, onClick, ...props }: LinkScrollProps & LinkProps) {
   return (
     <Link
       onClick={onClick}
@@ -17,6 +17,7 @@ export default function LinkScroll({ to, children, onClick }: LinkScrollProps) {
       offset={-150}
       variant="dark"
       fontWeight="semibold"
+      {...props}
     >
       {children}
     </Link>

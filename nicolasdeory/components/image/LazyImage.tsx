@@ -33,7 +33,6 @@ export default function LazyImage({
           src={src}
           onError={() => setError(true)}
           onLoad={() => {
-            console.log("loaded!");
             setLoaded(true);
           }}
           alt={alt}

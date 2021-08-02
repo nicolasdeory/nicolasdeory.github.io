@@ -9,7 +9,8 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikProps } from "formik";
+import * as Scroll from "react-scroll";
 import * as Yup from "yup";
 import Section from "./Section";
 
@@ -33,7 +34,7 @@ export default function ContactMe() {
 
   const toast = useToast();
 
-  function submitForm(values, { setSubmitting }) {
+  function submitForm(values, { setSubmitting, resetForm }: FormikProps<typeof ContactFormSchema>) {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -51,9 +52,11 @@ export default function ContactMe() {
           isClosable: true,
           variant: "solid",
         });
+        resetForm();
         setSubmitting(false);
       })
       .catch((error) => {
+        console.log(error);
         toast({
           title: "Error sending message",
           description: "Sorry, something went wrong. Try again later?",

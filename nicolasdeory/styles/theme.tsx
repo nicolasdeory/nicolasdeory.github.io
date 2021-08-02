@@ -137,6 +137,9 @@ const theme = extendTheme({
       header: {
         menu: tinycolor(bgColorLight).darken(3).desaturate(70).toString(),
       },
+      footer: {
+        bg: "#222"
+      }
     },
     dark: {
       text: {
@@ -173,6 +176,9 @@ const theme = extendTheme({
       header: {
         menu: tinycolor(bgColorDark).lighten(3).toString(),
       },
+      footer: {
+        bg: tinycolor(bgColorDark).darken(5).toString()
+      }
     },
   },
   components: { Button, CloseButton: Button, Link, Alert },

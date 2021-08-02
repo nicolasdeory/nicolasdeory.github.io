@@ -22,6 +22,7 @@ import Blog from "../components/section/Blog";
 import ContactMe from "../components/section/ContactMe";
 import Head from "next/head";
 import LazyImage from "../components/image/LazyImage";
+import Footer from "../components/section/Footer";
 
 const chevronVariants: Variants = {
   hidden: { opacity: 0, transition: { duration: 0.1 } },
@@ -61,13 +62,15 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nicolás de Ory | Fullstack & Mobile Development, UI/UX Design</title>
+        <title>
+          Nicolás de Ory | Fullstack & Mobile Development, UI/UX Design
+        </title>
         <meta
           name="description"
           content="I'm a Software Engineer from Spain. I am passionate about building products from the ground up. Shoot me a message if you have any questions."
         />
       </Head>
-      <Box bg={bgColor} w="100%" minH="100vh" color={textBodyColor}>
+      <Box bg={bgColor} w="100%" minH="100vh" color={textBodyColor} id="top">
         <HeaderBreadcrumbContext.Provider value={value}>
           <Header />
           <Box
@@ -101,7 +104,12 @@ export default function Home() {
                 transform="translateX(-50%)"
                 filter={chevronFilter}
               >
-                <LazyImage src="down-chevron.svg" alt="Down chevron" w="20px" h="20px" />
+                <LazyImage
+                  src="down-chevron.svg"
+                  alt="Down chevron"
+                  w="20px"
+                  h="20px"
+                />
               </MotionBox>
             </Box>
             <InView onChange={(inView) => setInView(inView)}>
@@ -114,6 +122,7 @@ export default function Home() {
               <ContactMe />
             </VStack>
           </Box>
+          <Footer />
         </HeaderBreadcrumbContext.Provider>
       </Box>
     </>
