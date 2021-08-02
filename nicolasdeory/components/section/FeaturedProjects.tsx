@@ -13,7 +13,7 @@ export default function FeaturedProjects() {
     HeaderBreadcrumbContext
   );
   return (
-    <Section title="Featured Projects" id="projects" sectionAbove="About me">
+    <Section title="Featured projects" id="projects" sectionAbove="About me">
       <VStack w="100%" maxW="1000px" spacing="100px">
         <OddChildrenAlignment>
           <Project

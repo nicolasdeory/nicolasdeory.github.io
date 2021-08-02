@@ -28,6 +28,9 @@ const Button = {
       color: colMode(props) + ".button.dark.color",
       _hover: {
         bg: colMode(props) + ".button.dark.hover",
+        _disabled: {
+          bg: colMode(props) + ".button.dark.bg",
+        }
       },
       _active: {
         bg: colMode(props) + ".button.dark.active",
@@ -146,7 +149,7 @@ const theme = extendTheme({
           color: "#222",
           bg: tinycolor(darkAccent).toString(),
           hover: tinycolor(darkAccent).lighten(20).toString(),
-          active: tinycolor(darkAccent).darken(5).saturate(20).toString(),
+          active: tinycolor(darkAccent).darken(5).saturate(20).toString()
         },
         outline: {
           hover: "#0001",

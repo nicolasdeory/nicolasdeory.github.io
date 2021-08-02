@@ -5,7 +5,7 @@ import Section from "./Section";
 export default function AllProjects() {
   return (
     <Section
-      title="All Projects"
+      title="All projects"
       id="all-projects"
       sectionAbove="Featured Projects"
     >

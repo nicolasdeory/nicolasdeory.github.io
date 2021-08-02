@@ -12,6 +12,7 @@ import AboutMe from "../components/section/AboutMe";
 import AllProjects from "../components/section/AllProjects";
 import FeaturedProjects from "../components/section/FeaturedProjects";
 import Blog from "../components/section/Blog";
+import ContactMe from "../components/section/ContactMe";
 
 const chevronVariants: Variants = {
   hidden: { opacity: 0, transition: { duration: 0.1 } },
@@ -89,6 +90,7 @@ export default function Home() {
             <FeaturedProjects />
             <AllProjects />
             <Blog />
+            <ContactMe />
           </VStack>
         </Box>
       </HeaderBreadcrumbContext.Provider>
