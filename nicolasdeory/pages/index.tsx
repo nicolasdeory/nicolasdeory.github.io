@@ -60,10 +60,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nicolás de Ory</title>
+        <title>Nicolás de Ory | Fullstack & Mobile Development, UI/UX Design</title>
         <meta
           name="description"
-          content="I'm a Software Engineer from Spain. I am passionate about building products from the ground up. Feel free to poke around and shoot me a message if you have any questions."
+          content="I'm a Software Engineer from Spain. I am passionate about building products from the ground up. Shoot me a message if you have any questions."
         />
       </Head>
       <Box bg={bgColor} w="100%" minH="100vh" color={textBodyColor}>
