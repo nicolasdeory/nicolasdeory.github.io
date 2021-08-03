@@ -5,7 +5,7 @@ import { IntersectionObserverProps, InView } from "react-intersection-observer";
 interface RevealInViewProps {
   disabled?: boolean;
   children: JSX.Element | JSX.Element[]
-  style: any;
+  style?: any;
 }
 
 const motionDivVariants: Variants = {
