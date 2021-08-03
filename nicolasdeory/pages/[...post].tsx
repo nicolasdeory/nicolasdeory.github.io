@@ -54,6 +54,7 @@ export default function Post({
   const textBodyColor = useColorModeValue("light.text.body", "dark.text.body");
   const bgColor = useColorModeValue("light.bg", "dark.bg");
 
+  // TODO THE META DATE CREATED ISN'T SPECIFIED CORRECTLY
   return (
     <Layout metaDescription={description} metaCreated={new Date(date)}>
       <Flex w="100%" direction="column" align="center" mb="50px">
