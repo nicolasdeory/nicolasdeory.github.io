@@ -139,6 +139,9 @@ const theme = extendTheme({
       },
       footer: {
         bg: "#222"
+      },
+      code: {
+        span: tinycolor(bgColorLight).darken(10).desaturate(90).toString(),
       }
     },
     dark: {
@@ -178,6 +181,9 @@ const theme = extendTheme({
       },
       footer: {
         bg: tinycolor(bgColorDark).darken(5).toString()
+      },
+      code: {
+        span: tinycolor(bgColorDark).lighten(10).toString(),
       }
     },
   },
