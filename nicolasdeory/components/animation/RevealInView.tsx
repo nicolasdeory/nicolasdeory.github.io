@@ -1,6 +1,12 @@
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
-import { InView } from "react-intersection-observer";
+import { IntersectionObserverProps, InView } from "react-intersection-observer";
+
+interface RevealInViewProps {
+  disabled?: boolean;
+  children: JSX.Element | JSX.Element[]
+  style: any;
+}
 
 const motionDivVariants: Variants = {
   hidden: {
@@ -15,7 +21,7 @@ const motionDivVariants: Variants = {
   },
 };
 
-export default function RevealInView({ children, disabled, ...props}) {
+export default function RevealInView({ children, disabled, style}: RevealInViewProps) {
   const controls = useAnimation();
   const [inView, setInview] = useState(false);
   
@@ -27,7 +33,7 @@ export default function RevealInView({ children, disabled, ...props}) {
   }
 
   return (
-    <InView onChange={onInViewChanged} {...props} >
+    <InView onChange={onInViewChanged} style={style} >
       <motion.div variants={motionDivVariants} initial={disabled ? "visible" : "hidden"} animate={controls}>
         {children}
       </motion.div>
