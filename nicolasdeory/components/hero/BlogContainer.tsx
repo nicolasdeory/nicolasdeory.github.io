@@ -1,15 +1,19 @@
 import { Box, Heading, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
-import BlogPostLink from "./BlogPostLink";
+import BlogPostLink, { BlogPostInfoProps } from "./BlogPostLink";
 
 
 type BlogContainerProps = {
-    children?: JSX.Element | JSX.Element[];
+    posts?: BlogPostInfoProps[]
 }
 
-export default function BlogContainer({ children }: BlogContainerProps) {
+export default function BlogContainer({ posts }: BlogContainerProps) {
   
   const cardBg = useColorModeValue("light.card.bg", "dark.card.bg");
   
+  const postChildren = posts.map(p => {
+    return <BlogPostLink key={p.url} {...p} />
+  });
+
   return (
     <Box
       bg={cardBg}
@@ -26,12 +30,12 @@ export default function BlogContainer({ children }: BlogContainerProps) {
         Latest blog posts
       </Heading>
       <VStack spacing="20px" align="start" mb="40px">
-        {children}
+        {postChildren}
       </VStack>
       <Link
         color="text.light"
         textDecoration="underline"
-        href="/all-posts"
+        href="/blog"
       >
         See all posts
       </Link>

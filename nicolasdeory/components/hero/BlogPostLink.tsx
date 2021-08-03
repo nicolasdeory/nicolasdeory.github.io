@@ -1,20 +1,32 @@
 import { Box, Link, Text } from "@chakra-ui/react";
 
-export type BlogPostLinkProps = {
-    children: string,
-    date: Date,
-    url: string,
-    title?: string,
+export interface BlogPostInfoProps {
+  title?: string;
+  description?: string;
+  url?: string;
+  date?: Date;
 }
 
-export default function BlogPostLink({ children, date, url }: BlogPostLinkProps) {
-  
-  const dateString = date.toLocaleString('en-US', {day: "numeric", month: 'short', year: 'numeric'});
-  
-    return (
+export interface BlogPostLinkProps extends BlogPostInfoProps {
+  noAnim?: boolean;
+}
+
+export default function BlogPostLink({
+  title,
+  date,
+  url,
+}: BlogPostLinkProps) {
+
+  const dateString = date.toLocaleString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  return (
     <Box>
       <Link size="sm" fontWeight="semibold" href={url} variant="dark">
-        {children}
+        {title}
       </Link>
       <Text fontSize="md" color="text.light">
         {dateString}

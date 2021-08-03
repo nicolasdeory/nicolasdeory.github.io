@@ -1,32 +1,13 @@
-import {
-  Box,
-  Button,
-  CloseButton,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  IconButton,
-  Link,
-  Portal,
-  Text,
-  useBoolean,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
-import {
-  faGit,
-  faGithub,
-  faStackOverflow,
-} from "@fortawesome/free-brands-svg-icons";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import
+  {
+    Box, CloseButton,
+    Flex, HStack, IconButton, Portal, useBoolean,
+    useColorModeValue,
+    VStack
+  } from "@chakra-ui/react";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion, useAnimation, Variants } from "framer-motion";
-import { useContext, useEffect, useState } from "react";
-import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
-import LinkScroll from "../link/LinkScroll";
-import HeaderIconLink from "./HeaderIconLink";
-import HeaderLink from "./HeaderLink";
+import { motion, Variants } from "framer-motion";
 import HeaderLinks from "./HeaderLinks";
 import MainName from "./MainName";
 
@@ -47,7 +28,7 @@ const headerMenuVariants: Variants = {
   }
 }
 
-export default function Header() {
+export default function Header({isMainPage}: {isMainPage?: boolean}) {
   const [menuOpen, setMenuOpen] = useBoolean(false);
 
   const headerBg = useColorModeValue("light.bg","dark.bg");
@@ -67,9 +48,9 @@ export default function Header() {
         boxShadow="0 0 2px #0004"
       >
         <Flex direction="row" justify="space-between" align="center" h="100%">
-          <MainName />
+          <MainName isMainPage={isMainPage} />
           <HStack spacing="40px" display={{ base: "none", lg: "flex" }}>
-            <HeaderLinks />
+            <HeaderLinks isMainPage={isMainPage} />
           </HStack>
           <IconButton
             onClick={() => setMenuOpen.toggle()}

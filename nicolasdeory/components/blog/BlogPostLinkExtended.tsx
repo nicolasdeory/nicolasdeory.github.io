@@ -4,9 +4,10 @@ import { BlogPostLinkProps } from "../hero/BlogPostLink";
 
 export default function BlogPostLinkExtended({
   title,
-  children,
   url,
   date,
+  description,
+  noAnim
 }: BlogPostLinkProps) {
   const lineBg = useColorModeValue("light.line.light", "dark.line.light");
   const textLight = useColorModeValue("light.text.light", "dark.text.light");
@@ -18,7 +19,7 @@ export default function BlogPostLinkExtended({
   });
 
   return (
-    <RevealInView>
+    <RevealInView disabled={noAnim}>
       <HStack align="stretch" spacing="20px">
         <Box minW="4px" bg={lineBg}></Box>
         <Box fontSize={{ base: "md", lg: "lg" }}>
@@ -27,7 +28,7 @@ export default function BlogPostLinkExtended({
           </Link>
           <Text color={textLight}>{dateString}</Text>
           <Text align="justify">
-            {children}
+            {description}
           </Text>
         </Box>
       </HStack>

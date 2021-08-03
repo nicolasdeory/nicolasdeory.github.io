@@ -1,17 +1,20 @@
 import { Heading, HStack, Text } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
-import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/dist/client/router";
+import { useCallback, useContext, useEffect, useState } from "react";
 import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
 
 const MotionHStack = motion(HStack);
 
-export default function MainName() {
+export default function MainName({ isMainPage }: { isMainPage?: boolean }) {
   const controls = useAnimation();
 
   const { headerBreadcrumb, setHeaderBreadcrumb } = useContext(
     HeaderBreadcrumbContext
   );
   const [headerBreadcrumbText, setHeaderBreadcrumbText] = useState(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     async function doAnim() {
@@ -24,17 +27,29 @@ export default function MainName() {
     doAnim();
   }, [headerBreadcrumb, controls]);
 
+  const onMainNameClicked = useCallback(() => {
+    if (isMainPage) {
+      scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
+  }, [isMainPage, router]);
+
   return (
     <HStack>
       <Heading
         size="md"
         fontWeight="semibold"
         cursor="pointer"
-        onClick={() => scrollTo({ top: 0, behavior: "smooth" })}
+        onClick={onMainNameClicked}
       >
         Nicolás de Ory
       </Heading>
-      <MotionHStack display={{base: "none", md: "inherit"}} initial={{ opacity: 0 }} animate={controls}>
+      <MotionHStack
+        display={{ base: "none", md: "inherit" }}
+        initial={{ opacity: 0 }}
+        animate={controls}
+      >
         <Text>•</Text>
         <Text fontWeight="semibold">{headerBreadcrumbText}</Text>
       </MotionHStack>

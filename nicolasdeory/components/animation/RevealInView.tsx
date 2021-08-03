@@ -15,12 +15,12 @@ const motionDivVariants: Variants = {
   },
 };
 
-export default function RevealInView({ children, ...props}) {
+export default function RevealInView({ children, disabled, ...props}) {
   const controls = useAnimation();
   const [inView, setInview] = useState(false);
-
+  
   async function onInViewChanged(visible) {
-    if (visible && !inView) {
+    if (!disabled && visible && !inView) {
       await controls.start("visible");
       setInview(true);
     }
@@ -28,7 +28,7 @@ export default function RevealInView({ children, ...props}) {
 
   return (
     <InView onChange={onInViewChanged} {...props} >
-      <motion.div variants={motionDivVariants} initial="hidden" animate={controls}>
+      <motion.div variants={motionDivVariants} initial={disabled ? "visible" : "hidden"} animate={controls}>
         {children}
       </motion.div>
     </InView>

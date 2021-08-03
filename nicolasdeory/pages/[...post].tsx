@@ -1,4 +1,11 @@
-import { Box, Code, Flex, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Code,
+  Flex,
+  Heading,
+  Link,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import fs from "fs";
 import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -21,6 +28,8 @@ import BlogA from "../components/blog/BlogA";
 import Footer from "../components/section/Footer";
 import { DiscussionEmbed } from "disqus-react";
 import { padStart } from "lodash";
+import BlogImg from "../components/blog/BlogImg";
+import Layout from "../components/layout/Layout";
 
 interface BlogEntryProps {
   title: string;
@@ -34,8 +43,6 @@ interface PostProps extends BlogEntryProps {
   articleId: string;
 }
 
-const postsDirectory = path.join(process.cwd(), "_posts");
-
 export default function Post({
   mdx,
   articleId,
@@ -47,44 +54,38 @@ export default function Post({
   const textBodyColor = useColorModeValue("light.text.body", "dark.text.body");
   const bgColor = useColorModeValue("light.bg", "dark.bg");
 
-  console.log(date);
   return (
-    <>
-      <Head>
-        <title>
-          {title} | Nicolás de Ory | Fullstack & Mobile Development, UI/UX
-          Design
-        </title>
-        <meta name="description" content={description} />
-        <meta name="date.created" content={date}></meta>
-      </Head>
-      <Box bg={bgColor} w="100%" minH="100vh" color={textBodyColor} id="top">
-        <Header />
-        <Flex w="100%" direction="column" align="center" mb="100px">
+    <Layout metaDescription={description} metaCreated={new Date(date)}>
+      <Flex w="100%" direction="column" align="center" mb="50px">
+        <Box
+          px={{ base: "40px", md: "85px" }}
+          pb="100px"
+          pt={{ base: "120px", md: "80px" }}
+          maxW={{ base: "100%", md: "800px" }}
+          fontSize={{ base: "md", md: "lg" }}
+        >
+          <Heading>{title}</Heading>
+          <BlogDate date={date} />
+          <MDXRemote
+            {...mdx}
+            components={{
+              h1: BlogH1,
+              h2: BlogH2,
+              p: BlogP,
+              a: BlogA,
+              code: BlogCode,
+              ul: BlogUl,
+              ol: BlogOl,
+              img: BlogImg,
+              blockquote: BlogQuote,
+              inlineCode: BlogInlineCode,
+              BlogDate,
+            }}
+          />
           <Box
-            px={{ base: "40px", md: "85px" }}
-            pb="100px"
-            pt="80px"
-            maxW="800px"
-            fontSize="lg"
+            w="100%"
+            maxW={{ base: "100%", md: "800px" }}
           >
-            <MDXRemote
-              {...mdx}
-              components={{
-                h1: BlogH1,
-                h2: BlogH2,
-                p: BlogP,
-                a: BlogA,
-                code: BlogCode,
-                ul: BlogUl,
-                ol: BlogOl,
-                blockquote: BlogQuote,
-                inlineCode: BlogInlineCode,
-                BlogDate,
-              }}
-            />
-          </Box>
-          <Box w="100%" maxW="800px">
             <DiscussionEmbed
               shortname="nicolasdeory"
               config={{
@@ -95,15 +96,15 @@ export default function Post({
               }}
             />
           </Box>
-        </Flex>
-        <Footer />
-      </Box>
-    </>
+        </Box>
+      </Flex>
+    </Layout>
   );
 }
 
+const postsDirectory = path.join(process.cwd(), "_posts");
+
 export const getStaticProps: GetStaticProps = async (props) => {
-  console.log(props.params.post);
   const filePath = path.join(postsDirectory, `${props.params.post[2]}.mdx`);
   const source = fs.readFileSync(filePath);
   const { data, content } = matter(source.toString());
@@ -126,7 +127,6 @@ export const getStaticProps: GetStaticProps = async (props) => {
     props: {
       ...processedData,
       articleId: props.params.post[2],
-      date: data.date.toISOString().split("T")[0],
       mdx: await serialize(content, { scope: processedData }),
     },
   };

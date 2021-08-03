@@ -8,18 +8,32 @@ import HeaderLink from "./HeaderLink";
 
 export default function HeaderLinks({
   onHeaderLinkClicked,
+  isMainPage,
 }: {
   onHeaderLinkClicked?: () => void;
+  isMainPage?: boolean;
 }) {
   return (
     <>
-      <HeaderLink to="about-me" onClick={onHeaderLinkClicked}>
+      <HeaderLink
+        to="about-me"
+        onClick={onHeaderLinkClicked}
+        href={isMainPage ? null : "/"}
+      >
         About me
       </HeaderLink>
-      <HeaderLink to="projects" onClick={onHeaderLinkClicked}>
+      <HeaderLink
+        to="projects"
+        onClick={onHeaderLinkClicked}
+        href={isMainPage ? null : "/"}
+      >
         Projects
       </HeaderLink>
-      <HeaderLink to="blog" onClick={onHeaderLinkClicked}>
+      <HeaderLink
+        to="blog"
+        onClick={onHeaderLinkClicked}
+        href={isMainPage ? null : "/blog"}
+      >
         Blog
       </HeaderLink>
       <HStack spacing="10px">
