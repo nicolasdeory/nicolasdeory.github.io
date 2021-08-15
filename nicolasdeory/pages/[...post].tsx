@@ -30,6 +30,7 @@ import { DiscussionEmbed } from "disqus-react";
 import { padStart } from "lodash";
 import BlogImg from "../components/blog/BlogImg";
 import Layout from "../components/layout/Layout";
+import { useEffect, useState } from "react";
 
 interface BlogEntryProps {
   title: string;
@@ -53,6 +54,14 @@ export default function Post({
 }: PostProps) {
   const textBodyColor = useColorModeValue("light.text.body", "dark.text.body");
   const bgColor = useColorModeValue("light.bg", "dark.bg");
+
+  // Hack to make light/dark theme transitions work on disqus
+  const [disqusThemeKey, setDisqusThemeKey] = useState(textBodyColor);
+  useEffect(() => {
+    setTimeout(() => {
+      setDisqusThemeKey(textBodyColor);
+    }, 200);
+  }, [textBodyColor]);
 
   // TODO THE META DATE CREATED ISN'T SPECIFIED CORRECTLY
   return (
@@ -88,6 +97,7 @@ export default function Post({
             maxW={{ base: "100%", md: "800px" }}
           >
             <DiscussionEmbed
+              key={disqusThemeKey}
               shortname="nicolasdeory"
               config={{
                 url: "https://nicolasdeory.com/" + path,
