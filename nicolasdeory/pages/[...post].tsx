@@ -68,7 +68,7 @@ export default function Post({
     <Layout metaDescription={description} metaCreated={new Date(date)}>
       <Flex w="100%" direction="column" align="center" mb="50px">
         <Box
-          px={{ base: "40px", md: "85px" }}
+          px={{ base: "0px", md: "85px" }}
           pb="100px"
           pt={{ base: "120px", md: "80px" }}
           maxW={{ base: "100%", md: "800px" }}

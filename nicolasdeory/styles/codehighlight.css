@@ -8,7 +8,11 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
   padding: 0.5em;
   background: var(--chakra-colors-dark-footer-bg);
   color: #ddd;
-  font-size: 12pt;
+  font-size: 10pt;
+}
+
+pre {
+  white-space: pre-wrap;
 }
 
 .hljs-tag,
