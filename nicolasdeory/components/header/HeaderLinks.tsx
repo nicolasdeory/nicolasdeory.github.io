@@ -1,5 +1,6 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { faGithub, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
+import { useRouter } from "next/dist/client/router";
 import { useCallback } from "react";
 import * as Scroll from "react-scroll";
 import ColorModeSwitch from "./ColorModeSwitch";
@@ -13,6 +14,9 @@ export default function HeaderLinks({
   onHeaderLinkClicked?: () => void;
   isMainPage?: boolean;
 }) {
+
+  const router = useRouter();
+
   return (
     <>
       <HeaderLink
@@ -49,7 +53,10 @@ export default function HeaderLinks({
       <Button
         variant="dark"
         onClick={() => {
-          Scroll.scroller.scrollTo("contact-me", { smooth: true });
+          if (isMainPage)
+            Scroll.scroller.scrollTo("contact-me", { smooth: true });
+          else
+            router.push("/contact-me");
           if (onHeaderLinkClicked) onHeaderLinkClicked();
         }}
       >

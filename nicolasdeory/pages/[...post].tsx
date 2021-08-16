@@ -13,7 +13,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Head from "next/head";
 import path from "path";
-import BlogDate from "../components/blog/BlogDate";
+import BlogDate from "../components/blog/BlogSubtitle";
 import BlogH1 from "../components/blog/BlogH1";
 import BlogH2 from "../components/blog/BlogH2";
 import BlogP from "../components/blog/BlogP";
@@ -31,6 +31,7 @@ import { padStart } from "lodash";
 import BlogImg from "../components/blog/BlogImg";
 import Layout from "../components/layout/Layout";
 import { useEffect, useState } from "react";
+import BlogPostDisplay from "../components/blog/BlogPostDisplay";
 
 interface BlogEntryProps {
   title: string;
@@ -53,7 +54,6 @@ export default function Post({
   date,
 }: PostProps) {
   const textBodyColor = useColorModeValue("light.text.body", "dark.text.body");
-  const bgColor = useColorModeValue("light.bg", "dark.bg");
 
   // Hack to make light/dark theme transitions work on disqus
   const [disqusThemeKey, setDisqusThemeKey] = useState(textBodyColor);
@@ -75,23 +75,8 @@ export default function Post({
           fontSize={{ base: "md", md: "lg" }}
         >
           <Heading>{title}</Heading>
-          <BlogDate date={date} />
-          <MDXRemote
-            {...mdx}
-            components={{
-              h1: BlogH1,
-              h2: BlogH2,
-              p: BlogP,
-              a: BlogA,
-              code: BlogCode,
-              ul: BlogUl,
-              ol: BlogOl,
-              img: BlogImg,
-              blockquote: BlogQuote,
-              inlineCode: BlogInlineCode,
-              BlogDate,
-            }}
-          />
+          <BlogDate subtitle={date} />
+          <BlogPostDisplay {...mdx} />
           <Box
             w="100%"
             maxW={{ base: "100%", md: "800px" }}

@@ -1,3 +1,5 @@
+import { Tag } from "@chakra-ui/react";
+import Project from "../projects/Project";
 import ProjectGrid from "../projects/ProjectGrid";
 import SmallProject from "../projects/SmallProject";
 import Section from "./Section";
@@ -12,33 +14,52 @@ export default function AllProjects() {
       <ProjectGrid>
         <SmallProject
           title="Moovid"
-          subtitle="WEB APP – Javascript, Emscripten, Java, Spring Boot"
           url="/project/moovid"
           githubUrl="https://github.com/nicolasdeory/moovid"
           gradientStart="#f12711"
           gradientEnd="#f5af19"
         >
-          A mashup webapp integrating Google Photos, Spotify and Cognitive
-          Services to create customized photo collage videos.
+          <Project.Description>
+            A mashup webapp integrating Google Photos, Spotify and Cognitive
+            Services to create customized photo collage videos.
+          </Project.Description>
+          <Project.Tags>
+            <Tag variant="dark">Web app</Tag>
+            <Tag>Javascript</Tag>
+            <Tag>Java</Tag>
+            <Tag>Spring Boot</Tag>
+          </Project.Tags>
         </SmallProject>
         <SmallProject
           title="Teamworks"
-          subtitle="WEB APP – React, Java, Spring Boot"
           url="/project/teamworks"
           githubUrl="https://github.com/nicolasdeory/teamworks"
           gradientStart="#56ab2f"
           gradientEnd="#a8e063"
         >
-          A functional proof-of-concept app focused on team management,
-          fine-grained permissions, and streamlined messaging.
+          <Project.Description>
+            A functional proof-of-concept app focused on team management,
+            fine-grained permissions, and streamlined messaging.
+          </Project.Description>
+          <Project.Tags>
+            <Tag variant="dark">Web app</Tag>
+            <Tag>React</Tag>
+            <Tag>Java</Tag>
+            <Tag>Spring Boot</Tag>
+          </Project.Tags>
         </SmallProject>
         <SmallProject
           title="Firelight RGB"
-          subtitle="MOBILE APP – React Native, NativeBase"
           url="/project/firelight-app"
         >
-          An app designed to control Firelight LED strips, providing powerful,
-          customized lighting effects through a user-friendly interface.
+          <Project.Description>
+            An app designed to control Firelight LED strips, providing powerful,
+            customized lighting effects through a user-friendly interface.
+          </Project.Description>
+          <Project.Tags>
+            <Tag variant="dark">Mobile app</Tag>
+            <Tag>x</Tag>
+          </Project.Tags>
         </SmallProject>
       </ProjectGrid>
     </Section>

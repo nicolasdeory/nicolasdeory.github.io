@@ -1,0 +1,39 @@
+---
+title: Moovid
+description: A mashup webapp integrating Google Photos, Spotify and Cognitive Services to create customized photo collage videos.
+githubUrl: https://github.com/nicolasdeory/moovid
+---
+![Moovid project thumbnail](/projects/moovid.png)
+
+Moovid was made as part of a software architecture and integration class in the University of Seville.
+The idea behind this project was to delve into on-the-fly **video generation with FFMPEG running in the browser**, as well as leveraging the Cognitive Services API
+to enable interaction via **natural language** with the app.
+
+The app was deployed in Google App Engine, which had a lot of limitations and influenced several design choices.
+
+
+## Ensuring frictionless natural language interaction
+
+The main point of interaction with the app was through a chat-like interface. This posed several challenges, particularly persisting context and extracting entities from queries.
+LUIS was used to determine the intent of the user's query, but it doesn't offer a context API; every request is independent of the previous ones.
+Context logic was therefore implemented in the server code and kept in session variables.
+
+Cognitive Services is also useful for extracting entities, but complex entities such as music genres were processed in the server via wordlists, because LUIS didn't recognize
+them consistently.
+
+In the future, using tools such as Voiceflow to model the conversation flow and UX would've been useful to iterate faster and test before coding it.
+
+## Generating videos on the client
+
+The backend server is programmed in Java, so using a encoding library written in pure Java was not viable for performance reasons. Since the app was deployed on App Engine,
+it wasn't possible to execute external (non-Java) code in the server, so using FFMPEG on the server was not an option, nor was using dedicated C/C++ libraries which
+offer far better performance.
+
+The only viable option was generating the video montage on the client. This was implemented using [FFMPEG.js](https://github.com/Kagami/ffmpeg.js/), a Javascript port
+of FFMPEG using Emscripten. There is a [WebAssembly version](https://github.com/ffmpegwasm/ffmpeg.wasm) as well, possibly offering better performance.
+The Emscripten version runs directly on the V8 engine, so multithreading was not supported, which FFMPEG greatly takes advantage of. 
+On top of that, programs compiled with Emscripten seemed to have a 64 MB memory limiting, requiring the use of very simple FFMPEG filters
+and encoding in order not to run out of memory.
+
+The images are retrieved using the Google Photos API, and are sent to the client, as well as the music track, selected using the genre and advanced attributes search
+available through the Spotify API. With these elements, the client calls FFMPEG.js with the relevant parameters and generates the video asynchronously.

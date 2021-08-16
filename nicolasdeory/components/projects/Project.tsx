@@ -6,40 +6,69 @@ import {
   HStack,
   Image,
   Link,
+  Tag,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import RevealInView from "../animation/RevealInView";
 
 type ProjectProps = {
   isOdd?: boolean;
   title: string;
-  subtitle?: string;
   url?: string;
   imageSrc?: string;
-  children: string;
+  children: JSX.Element[];
   githubUrl?: string;
 };
 
-export default function Project({
+const Description = ({ children }) => {
+  return <>{children}</>;
+};
+
+const Tags = ({ children }) => {
+  return <>{children}</>;
+};
+
+const Project = ({
   isOdd,
   title,
-  subtitle,
   url,
   imageSrc,
   children,
   githubUrl,
-}: ProjectProps) {
+}: ProjectProps) => {
   const subtitleTextColor = useColorModeValue(
     "light.text.light",
     "dark.text.light"
   );
 
+  const projectDescription = children.find((x) => x.type === Description);
+  const projectTags = children.find((x) => x.type === Tags);
+  let projectTagChildren = projectTags?.props.children ?? [];
+  let projectTagList: JSX.Element[] = Array.isArray(projectTagChildren)
+    ? projectTagChildren
+    : [projectTagChildren];
+  if (isOdd) {
+    projectTagList = [...projectTagList].reverse();
+  }
+
+  projectTagList = projectTagList.map((x, i) => {
+    if (i == 0)
+      return React.cloneElement(x, { key: i, mb: "5px" });
+    else
+      return React.cloneElement(x, {
+        key: i,
+        ml: isOdd ? "0" : "5px",
+        mr: isOdd ? "5px" : "0",
+        mb: "5px"
+      });
+  });
+
   return (
-    <RevealInView style={{width: "100%"}}> 
+    <RevealInView style={{ width: "100%" }}>
       <Flex
         direction="column"
         alignSelf={isOdd ? "flex-end" : "flex-start"}
@@ -68,11 +97,16 @@ export default function Project({
               </Link>
             )}
           </Flex>
-          <Text color={subtitleTextColor} mt="8px">
-            {subtitle}
-          </Text>
-          <Text mt="20px" mb="10px">
-            {children}
+          <Flex
+            mt="10px"
+            justify="flex-start"
+            flexDirection={isOdd ? "row-reverse" : "row"}
+            wrap="wrap"
+          >
+            {projectTagList}
+          </Flex>
+          <Text mt="10px" mb="10px">
+            {projectDescription?.props.children}
           </Text>
           <Link href={url}>Read more</Link>
         </Box>
@@ -105,4 +139,9 @@ export default function Project({
       </Flex>
     </RevealInView>
   );
-}
+};
+
+Project.Description = Description;
+Project.Tags = Tags;
+
+export default Project;

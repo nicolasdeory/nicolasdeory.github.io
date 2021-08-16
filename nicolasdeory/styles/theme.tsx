@@ -95,6 +95,23 @@ const Alert = {
   },
 };
 
+const Tag = {
+  parts: ['container', 'label'],
+  baseStyle: {
+    container: {
+      fontWeight: "semibold",
+    }
+  },
+  variants: {
+    dark: (props) => ({
+      container: {
+        color: colMode(props) + ".button.dark.color",
+        bg: colMode(props) + ".button.dark.bg"
+      }
+    })
+  }
+}
+
 const bgColorLight = "#FAFFF9";
 const bgColorDark = "#2B2D42";
 
@@ -118,6 +135,11 @@ const theme = extendTheme({
       },
       card: {
         bg: "#fff",
+      },
+      tag: {
+        dark: {
+          bg: "#444"
+        }
       },
       button: {
         dark: {
@@ -161,6 +183,11 @@ const theme = extendTheme({
       card: {
         bg: tinycolor(bgColorDark).lighten(10).toString(),
       },
+      tag: {
+        dark: {
+          bg: tinycolor(darkAccent).toString()
+        }
+      },
       button: {
         dark: {
           color: "#222",
@@ -187,7 +214,7 @@ const theme = extendTheme({
       }
     },
   },
-  components: { Button, CloseButton: Button, Link, Alert },
+  components: { Button, CloseButton: Button, Link, Alert, Tag },
   fonts: {
     heading: "Source Sans Pro",
     body: "Source Sans Pro",

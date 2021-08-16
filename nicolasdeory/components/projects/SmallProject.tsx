@@ -11,15 +11,16 @@ import {
 } from "@chakra-ui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import RevealInView from "../animation/RevealInView";
+import Project from "./Project";
 
 type ProjectProps = {
   isOdd?: boolean;
   title: string;
-  subtitle?: string;
   url?: string;
   imageSrc?: string;
-  children: string;
+  children: JSX.Element[];
   githubUrl?: string;
   gradientStart?: string;
   gradientEnd?: string;
@@ -27,7 +28,6 @@ type ProjectProps = {
 
 export default function SmallProject({
   title,
-  subtitle,
   url,
   children,
   gradientStart,
@@ -39,6 +39,26 @@ export default function SmallProject({
     "light.text.light",
     "dark.text.light"
   );
+
+  const projectDescription = children.find(
+    (x) => x.type === Project.Description
+  );
+  const projectTags = children.find((x) => x.type === Project.Tags);
+  let projectTagChildren = projectTags?.props.children ?? [];
+  let projectTagList: JSX.Element[] = Array.isArray(projectTagChildren)
+    ? projectTagChildren
+    : [projectTagChildren];
+
+  projectTagList = projectTagList.map((x, i) => {
+    if (i == 0)
+      return React.cloneElement(x, { key: i, mb: "5px" });
+    else
+      return React.cloneElement(x, {
+        key: i,
+        ml: "5px",
+        mb: "5px"
+      });
+  });
 
   return (
     <RevealInView>
@@ -70,11 +90,11 @@ export default function SmallProject({
           )}
         </Flex>
 
-        <Text color={subtitleTextColor} mt="8px">
-          {subtitle}
-        </Text>
+        <Flex mt="10px" justify="flex-start" flexDirection="row" wrap="wrap">
+          {projectTagList}
+        </Flex>
         <Text mt="20px" mb="10px">
-          {children}
+          {projectDescription?.props.children}
         </Text>
         <Link href={url}>Read more</Link>
       </Box>
