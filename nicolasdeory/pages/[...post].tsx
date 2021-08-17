@@ -66,10 +66,9 @@ export default function Post({
   // TODO THE META DATE CREATED ISN'T SPECIFIED CORRECTLY
   return (
     <Layout metaDescription={description} metaCreated={new Date(date)}>
-      <Flex w="100%" direction="column" align="center" mb="50px">
+      <Flex w="100%" direction="column" align="center">
         <Box
           px={{ base: "0px", md: "85px" }}
-          pb="100px"
           pt={{ base: "120px", md: "80px" }}
           maxW={{ base: "100%", md: "800px" }}
           fontSize={{ base: "md", md: "lg" }}
@@ -80,6 +79,7 @@ export default function Post({
           <Box
             w="100%"
             maxW={{ base: "100%", md: "800px" }}
+            mt="50px"
           >
             <DiscussionEmbed
               key={disqusThemeKey}

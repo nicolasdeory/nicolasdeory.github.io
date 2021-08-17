@@ -9,7 +9,7 @@ export default function AllProjects() {
     <Section
       title="All projects"
       id="all-projects"
-      sectionAbove="Featured Projects"
+      sectionAbove="Featured projects"
     >
       <ProjectGrid>
         <SmallProject

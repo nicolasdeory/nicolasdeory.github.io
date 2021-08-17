@@ -1,0 +1,79 @@
+---
+title: Organizing photos into dated folders using PowerShell
+description: "As an iOS user, exporting photos and saving them to the computer has always been a bit of a hassle.
+This PowerShell script organizes photos into folders following a YYYY-MM format."
+date: 2021-03-08
+---
+As an iOS user, exporting photos and saving them to the computer has always been a bit of a hassle. 
+The most straightforward option for me has always been the native Windows 10 Photos App, 
+which lets you organize the photos into different folders, based on the date they were taken. 
+So all photos from August 2019 would be stored in a folder named `2019-08`, and so on.
+
+However, that stopped working at some point. I must've had some photos in a strange format, because the app would almost always crash mid-import.
+So I could either manually go over thousands of photos and videos to find the rogue one, or I could find another solution.
+
+I didn't need anything too fancy. In fact, the Photos app offered even more than I needed. 
+In the end, I decided to make a PowerShell script that could get the job done.
+
+The script takes an input folder to take photos from, 
+and an output path where it will create folders for every month. It will use the last modified date, which should work for most cases unless 
+you're editing the photos (though if you're doing bulk editing, you shouldn't need this script anyway).
+
+In order to run the script, you will need to create a text file and paste in the code shown at the end of the article. Save it as `organizer.ps1`.
+
+Then, open a PowerShell prompt, cd into the folder where you saved the script and run the following script:
+
+`./organizer.ps1 --inputpath "<YOUR_INPUT_FOLDER>" --outputpath "<YOUR_OUTPUT_FOLDER>"`
+
+If you don't specify the inputpath or outputpath parameters, you'll be prompted for them.
+
+>Keep in mind that photos don't need to be in the same folder. You can simply get different DCIM folders together, and it will read them just fine.
+
+Here's the PowerShell script – You can also find it in the [GitHub repository](https://github.com/nicolasdeory/filemonthorganizer).
+
+```PowerShell
+param (
+    [Parameter(Mandatory=$true)][string]$inputpath,
+    [Parameter(Mandatory=$true)][string]$outputpath
+) 
+
+$i = 0
+
+$items = Get-ChildItem -Path $inputpath -Recurse
+
+$items | ForEach-Object {
+    if ( -not $_.PSIsContainer)
+    {
+        $monthString = $_.LastWriteTime.Month.ToString()
+        if ($monthString.length -lt 2) {
+            $monthString = "0" + $monthString
+        }
+        $yearString = $_.LastWriteTime.Year
+        $outputFolder = $outputpath + "\$($yearString)-$($monthString)"
+        if ( -not (Test-Path $outputFolder)) 
+        {
+            md $outputFolder | Out-Null
+        }
+
+        $folderFiles  = @(Get-ChildItem $outputFolder -File -Filter $_.Name | Select-Object -ExpandProperty Name)
+
+        $baseName = $_.BaseName
+        $extension = $_.Extension
+        $newName = $baseName + $extension
+        $count = 1
+        while ($folderFiles -contains $newName) {
+            # check for duplicated files, do not overwrite
+            $newName = "{0}({1}){2}" -f $baseName, $count++, $extension
+        }
+
+        Copy-Item -Path $_.FullName -Destination "$($outputFolder)\\$($newName)"
+        $i++
+        Write-Progress -Activity $_.FullName -PercentComplete (($i / $items.count)*100)
+           
+    }
+        
+}
+Write-Host Done!
+```
+
+If you have any questions, please leave a comment or [shoot me an e-mail](/contact-me). I hope this guide will make importing photos a less annoying task for some of you.
