@@ -40,7 +40,7 @@ export default function Home({posts}) {
 
   useEffect(() => {
     async function doAnim() {
-      if (!inView) {
+      if (inView) {
         await controls.start({ opacity: 1, y: 0 });
         await controls.start("loop");
       } else {
