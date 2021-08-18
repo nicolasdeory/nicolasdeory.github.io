@@ -49,16 +49,18 @@ export default function AllProjects() {
           </Project.Tags>
         </SmallProject>
         <SmallProject
-          title="Firelight RGB"
-          url="/project/firelight-app"
+          title="Food Scheduler"
+          url="/project/food-scheduler"
+          gradientStart="#654ea3"
+          gradientEnd="#eaafc8"
         >
           <Project.Description>
-            An app designed to control Firelight LED strips, providing powerful,
-            customized lighting effects through a user-friendly interface.
+            A webapp that simplifies tracking ingredients and planning of meals.
           </Project.Description>
           <Project.Tags>
-            <Tag variant="dark">Mobile app</Tag>
-            <Tag>x</Tag>
+            <Tag variant="dark">Web app</Tag>
+            <Tag>PHP</Tag>
+            <Tag>Oracle PL/SQL</Tag>
           </Project.Tags>
         </SmallProject>
       </ProjectGrid>
