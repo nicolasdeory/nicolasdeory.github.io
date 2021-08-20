@@ -8,7 +8,7 @@ export default function AboutMe() {
   return (
     <Section title="About me" mt="20px" id="about-me" sectionAbove={null}>
       <Grid templateColumns={["1fr","1fr","1fr","auto 2fr"]} maxW="1000px" gap={{base: "40px", lg: "80px"}} fontSize="lg" >
-        <LazyImage src="profile_pic1.jpg" alt="A photo of Nicolás" placeholderWidth="260px" h="400px" mx={{base: "auto", md: "0"}}/>
+        <LazyImage src="pfp2.jpg" alt="A photo of Nicolás" placeholderWidth="260px" h="400px" mx={{base: "auto", md: "0"}}/>
         <VStack align="start" textAlign="justify" h="100%" justify="center">
           <Text>
             My name is Nicolás de Ory Carmona. You’re welcome to call me Nico
