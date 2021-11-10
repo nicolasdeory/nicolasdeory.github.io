@@ -1,6 +1,4 @@
 import { Tag, VStack } from "@chakra-ui/react";
-import { useContext } from "react";
-import HeaderBreadcrumbContext from "../context/HeaderBreadcrumbContext";
 import OddChildrenAlignment from "../projects/OddChildrenAlignment";
 import Project from "../projects/Project";
 import Section from "./Section";
@@ -11,10 +9,9 @@ export default function FeaturedProjects() {
       <VStack w="100%" maxW="1000px" spacing="100px">
         <OddChildrenAlignment>
           <Project
-            title="Gestiona Residencias"
-            imageSrc="/projects/galgani1.png"
-            githubUrl="https://github.com/nicolasdeory/firelight"
-            url="/project/galgani"
+            title="Residence Management"
+            imageSrc="/projects/residencemanagement.png"
+            url="/project/residence-management"
           >
             <Project.Description>
               A custom residence management solution that simplifies bookings,

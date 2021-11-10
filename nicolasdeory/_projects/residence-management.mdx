@@ -1,0 +1,105 @@
+---
+title: Residence Management
+description: Simplifying student residence bookings, incident tracking, supply and employee management.
+---
+![Residence management view](/projects/residencemanagement2.png)
+
+[Magnolia Tree House](https://magnoliatreehouse.com/) is a student residence network mainly operating in Seville.
+They needed to streamline their booking management and, while there are many existing solutions, most of them are not very
+usable, having bugs or simply being very unintuitive to use.
+
+The idea for this project was take into account the specific needs of this residence network, while also
+scaling it and building a SaaS out of it. Because every residence has different needs, this piece of software
+is tailored to the requirements of every client, while always having a clean, easy-to-use interface that can
+be used from any kind of device: tablet, mobile or desktop.
+
+The project was initially designed in Javascript and JQuery, but was later rewritten in **React** and **Next.js**, following
+good design practices to dramatically improve maintainability. **Chakra UI** is used as the UI framework.
+
+The backend was implemented using **Node.js** and **Express**. The frontend is served by **Netlify**, while the backend
+is currently hosted in **AWS**, using **DynamoDB** as the database.
+
+The code is currently privately hosted on GitLab, and uses **GitLab CI** to automate the deployment to AWS and Netlify.
+
+As always, maintainability is a priority. It's important to make use of React functional components to create
+easy-to-test pieces that can be reused across the code. 
+
+For example, this is part of the code for a confirmation modal –
+instead of creating a new component for every kind of confirmation modal, we can create a generic component that can be reused
+for all kinds of modals. This also makes it easier to test individual components.
+
+<DemoConfirmationModal />
+
+```tsx
+
+export interface GenericConfirmationModalProps {
+  /**
+   * Whether the modal is open or not
+   */
+  isOpen: boolean;
+  /**
+   * Callback when the modal is closed
+   */
+  onClose: () => void;
+  /**
+   * Callback when the modal is accepted
+   */
+  onAccept: () => void;
+  /**
+   * Whether the modal should show a loading indicator
+   */
+  isLoading?: boolean;
+  /**
+   * Title of the modal
+   */
+  title: string;
+  /**
+   * Text of the main "confirm" button
+   */
+  confirmButtonText?: string;
+  children: React.ReactNode; 
+}
+
+export default function ConfirmationModal({
+  title,
+  confirmButtonText,
+  children,
+  isOpen,
+  onClose,
+  onAccept,
+  isLoading,
+}: GenericConfirmationModalProps) {
+  const cancelRef = useRef();
+
+  return (
+    <AlertDialog
+      isOpen={isOpen}
+      onClose={onClose}
+      leastDestructiveRef={cancelRef}
+    >
+      <AlertDialogOverlay>
+        <AlertDialogContent>
+          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            {title}
+          </AlertDialogHeader>
+          <AlertDialogBody>{children}</AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose} size="sm">
+              Cancelar
+            </Button>
+            <Button
+              variant="red"
+              size="sm"
+              onClick={onAccept}
+              ml="5px"
+              isLoading={isLoading}
+            >
+              {confirmButtonText??"Eliminar"}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialogOverlay>
+    </AlertDialog>
+  );
+}
+```

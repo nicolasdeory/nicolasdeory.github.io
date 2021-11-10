@@ -10,6 +10,7 @@ import BlogP from "./BlogP";
 import BlogQuote from "./BlogQuote";
 import BlogUl from "./BlogUl";
 import BlogVideo from "./BlogVideo";
+import DemoConfirmationModal from "../demo/DemoConfirmationModal";
 
 export default function BlogPostDisplay(props) {
   return (
@@ -27,6 +28,7 @@ export default function BlogPostDisplay(props) {
         blockquote: BlogQuote,
         inlineCode: BlogInlineCode,
         BlogVideo,
+        DemoConfirmationModal,
       }}
     />
   );

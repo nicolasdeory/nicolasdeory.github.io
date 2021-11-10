@@ -16,7 +16,7 @@ export default function AboutMe() {
           </Text>
           <Text>
             I was born in <i>Seville, Spain</i>. I did my major in Software
-            Engineering in the University of Seville.
+            Engineering in the <i>University of Seville</i>, and a semester in the <i>Institut Supérieur d’Electronique de Paris</i>.
           </Text>
           <Text>
             Throughout these years my main focus has been on experimenting and

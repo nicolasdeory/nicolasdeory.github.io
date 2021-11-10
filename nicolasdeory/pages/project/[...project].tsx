@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps = async (props) => {
   const processedData = {
     title: data.title,
     description: data.description,
-    githubUrl: data.githubUrl,
+    githubUrl: data.githubUrl??null,
   };
   return {
     props: {
