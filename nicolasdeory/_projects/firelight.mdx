@@ -1,0 +1,111 @@
+---
+title: Project Firelight
+description: RGB lighting software for Razer Chroma and other peripherals.
+githubUrl: https://github.com/nicolasdeory/firelight
+---
+<BlogVideo id="2LdjV5tlQ6s" />
+
+Many RGB lighting integrations for games are already available, but the main goal of this project is improve the
+usability and ease of use for users, as well as make it available for as many devices as possible.
+
+Extensibility and modularity remain a priority; the idea is to design a layer that abstracts away the vendor-specific
+interfaces for lighting devices, as well as provide some common utils to create new modules from scratch in hours, rather than days.
+
+This is what an example module looks like:
+```csharp
+// We extend the class LEDModule to create a new module
+public class BlinkWhiteModule : LEDModule
+    {
+        CancellationTokenSource masterCancelToken = new CancellationTokenSource();
+
+        // Useful module to display common effects
+        AnimationModule animation = AnimationModule.Create();
+
+        public event LEDModule.FrameReadyHandler NewFrameReady;
+
+        public static LEDModule Create()
+        {
+            return new BlinkWhiteModule();
+        }
+
+        private BlinkWhiteModule()
+        {
+            animation.NewFrameReady += FrameReceived;
+            Task.Run(() => Blinker(500)).CatchExceptions();
+        }
+
+        // Bubble up the lighting event to the main frame queue to be processed by FirelightCore
+        private void FrameReceived(LEDFrame frame)
+        {
+            NewFrameReady.Invoke(frame);
+        }
+
+        // Basic blinking effect every 500ms. It's run in another thread.
+        public async Task Blinker(int intervalMS)
+        {
+            bool on = false;
+            while (true)
+            {
+                if (masterCancelToken.IsCancellationRequested)
+                    return;
+                if (on)
+                {
+                    animation.HoldColor(HSVColor.Black, LightZone.All, 0.5f, true);
+                    on = false;
+                }
+                else
+                {
+                    animation.HoldColor(new HSVColor(0.2f, 1f, 1f), LightZone.All, 0.5f, true);
+                    on = true;
+                }
+                await Task.Delay(intervalMS);
+            }
+        }
+
+        // Stop the blinker in case this module is no longer being used by the user
+        public void Dispose()
+        {
+            masterCancelToken.Cancel();
+        }
+    }
+```
+
+The full API is still under construction so it's still subject to change, but the snippet above showcases the general idea.
+Because there is a very wide range of lighting devices in the market, instead of trying to support each of them invidiually,
+devices are classified into categories or **light zones**:
+
+```csharp
+public enum LightZone
+    {
+        None = 0,
+        Keyboard = 1, 
+        Strip = 2, 
+        Mouse = 4, 
+        Mousepad = 8, 
+        Headset = 16, 
+        Keypad = 32, 
+        General = 64,
+        All = Keyboard | Strip | Mouse | Mousepad | Headset | Keypad | General,
+        Desk = Keyboard | Mouse | Mousepad | Keypad,
+        MouseKey = Keyboard | Mouse
+    }
+```
+
+Each light zone contains a certain number of LEDs. For example, the **Keyboard** zone contains 109 LEDs, which
+is generally what regular RGB keyboards have, more or less. The **General** zone contains 5 LEDs, which allows
+addressing devices that don't fall into any ohe other categories, such as gaming chairs, PC cases, or monitors.
+
+This architecture allows creating integrations for games in a very modular way:
+
+<BlogVideo id="ttoyAkmRKXA" />
+
+Lastly, there's a user interface that lets the user customize miscellaneous options, ranging from **game-specific settings**
+to **lighting effect customization** (i.e. what color the health bar should have, don't light up specific devices, etc.):
+
+<BlogVideo id="vAcOvXGdcn0" />
+
+I was also extremely humbled to have the support of peripheral manufacturer **Razer** very early into the project, 
+sending a wide array of hardware to test effects with.
+I was also very happy and grateful to have the chance to showcase some of the game integrations in Razer DevCon 2021.
+
+<BlogVideo id="iBdk-T72JoM?start=2671" />

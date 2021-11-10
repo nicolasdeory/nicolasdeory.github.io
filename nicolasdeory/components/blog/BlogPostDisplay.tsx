@@ -9,6 +9,7 @@ import BlogOl from "./BlogOl";
 import BlogP from "./BlogP";
 import BlogQuote from "./BlogQuote";
 import BlogUl from "./BlogUl";
+import BlogVideo from "./BlogVideo";
 
 export default function BlogPostDisplay(props) {
   return (
@@ -25,6 +26,7 @@ export default function BlogPostDisplay(props) {
         img: BlogImg,
         blockquote: BlogQuote,
         inlineCode: BlogInlineCode,
+        BlogVideo,
       }}
     />
   );
