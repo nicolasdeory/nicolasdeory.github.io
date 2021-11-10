@@ -51,6 +51,7 @@ export default function AllProjects() {
         <SmallProject
           title="Food Scheduler"
           url="/project/food-scheduler"
+          githubUrl="https://github.com/nicolasdeory/FoodScheduler"
           gradientStart="#654ea3"
           gradientEnd="#eaafc8"
         >
