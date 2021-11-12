@@ -11,6 +11,7 @@ import BlogQuote from "./BlogQuote";
 import BlogUl from "./BlogUl";
 import BlogVideo from "./BlogVideo";
 import DemoConfirmationModal from "../demo/DemoConfirmationModal";
+import BlogInstagram from "./BlogInstagram";
 
 export default function BlogPostDisplay(props) {
   return (
@@ -29,6 +30,7 @@ export default function BlogPostDisplay(props) {
         inlineCode: BlogInlineCode,
         BlogVideo,
         DemoConfirmationModal,
+        BlogInstagram
       }}
     />
   );
