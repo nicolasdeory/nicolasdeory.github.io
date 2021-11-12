@@ -13,6 +13,23 @@ export default function AllProjects() {
     >
       <ProjectGrid>
         <SmallProject
+          title="PianoLED"
+          url="/project/pianoled"
+          githubUrl="https://github.com/nicolasdeory/pianoLED"
+          gradientStart="#0575E6"
+          gradientEnd="#021B79"
+        >
+          <Project.Description>
+            An LED strip that lights up to notes played on a keyboard, with different lighting modes.
+          </Project.Description>
+          <Project.Tags>
+            <Tag variant="dark">Hardware</Tag>
+            <Tag>Arduino C++</Tag>
+            <Tag>PCB Design</Tag>
+            <Tag>3D Printing</Tag>
+          </Project.Tags>
+        </SmallProject>
+        <SmallProject
           title="Moovid"
           url="/project/moovid"
           githubUrl="https://github.com/nicolasdeory/moovid"
