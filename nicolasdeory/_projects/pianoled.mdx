@@ -3,22 +3,51 @@ title: PianoLED
 description: An LED strip that reacts to notes played in a keyboard. 
 githubUrl: https://github.com/nicolasdeory/PianoLED
 ---
-// TODO. Instagram embed should be below
+As an avid piano player, I was inspired by videos on YouTube where the keys would light up
+based on the notes played. I wanted to replicate the same effect with a WS2812B LED strip and an Arduino Micro.
 
-<BlogInstagram />
+The program currently has the following lighting modes, rotating between them pressing a connected pushbutton.
+Optionally, the user can customize the effect by adjusting a potentiometer:
 
-// TODO. Instagram embed should be above
+- **Mode 0**: Off
+- **Mode 1**: Passive (cycle between different LED animations, e.g. rainbow, trail, sparkles)
+- **Mode 2**: Basic (notes light up with a fixed color - potentiometer changes hue)
+- **Mode 3**: Alternate Basic (same as mode 2, but with less saturated colors)
+- **Mode 4**: Palette (colors depend on the note pitch, following a gradient pattern - potentiometer navigates through 6 palettes)
+- **Mode 5**: Velocity Palette (same as mode 4, but color depends on how hard the key is pressed - 2 palettes)
+- **Mode 6**: Hue Cycle (notes light up with a fixed color that changes over time)
+- **Mode 7**: Reverb (when a note is played, surrounding LEDs light up like a droplet)
 
-Food Scheduler was a group project made for a web information systems class at the University of Seville.
-The goal behind this project was to get a basic understanding of **PHP** and **Oracle PL/SQL**.
+This is a video showcasing **Palette mode** (mode 4):
+<BlogVideo id="qoUxJPY1hhI" />
 
-Oracle 11g was used as the database server, and interaction with the data layer was implemented through PL/SQL procedures.
-This allowed us to separate the PHP code from the repository and business logic, as well as easily set up cronjobs which were essential
-for a schedule management app.
+You can find a picture of the schematic below:
+![Schematic](/projects/pianoled/schema.png)
 
-The web app allows tracking ingredients in the user's fridge, and keeping a schedule of meals, notifying the user if they are missing ingredients.
-It also provides a recipe browser, where other users can submit their recipes, as well as their ingredient amounts.
+A custom PCB was designed for the project, after verifying that the wiring works with a rough prototype.
+This simplified the wiring considerably and made it easier to deattach and reattach components such as the power supply,
+the LED strip and the MIDI cable. Everything was neatly packed in a 3D-printed box.
 
-The backend also exposes a RESTful API, which makes it fairly easy to integrate with other services.
+![PCB inside 3d-printed box](/projects/pianoled/pcb.jpg)
 
-![Food scheduler second view](/projects/food-scheduler/2.PNG)
+Multiple challenges were found throughout the project, which spans several years. This gave me invaluable experience
+in PCB design, 3d-printing, but also the limitations of microcontrollers such as the ATmega32U4.
+
+There's currently a bug where, ocassionally, ghost MIDI messages are received, effectively turning on certain LEDs
+in an arbitrary manner. The issue is exacerbated when the user plays many notes at once or in quick succession.
+
+After much debugging in such a limited environment, the most plausible cause for it is that MIDI messages are stored in
+the serial buffer, and it's processed in the main loop where the LEDs are updated. 
+Under certain circunstances, the buffer overflows and we start seeing corrupt data, which might explain why random
+LEDs light up (because the MIDI messages received are corrupted).
+
+After trying to improve the performance of the program in hopes of avoiding buffer overflows as much as possible,
+the issue is much less noticeable, but still happens ocassionally. The most ideal solution would be switching
+to a more powerful board with more memory and processing power, such as the [Teensy](https://www.pjrc.com/teensy/index.html)
+or the [NodeMCU](https://nodemcu.readthedocs.io/en/master/).
+
+Feel free to [contact me](/contact-me) if you have any questions or comments, or if you'd like to make this for your keyboard.
+
+Here's another video showcasing **Velocity mode** (mode 5):
+<BlogVideo id="VLiUAw_vvtU" />
+
