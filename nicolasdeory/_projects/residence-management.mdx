@@ -8,10 +8,12 @@ description: Simplifying student residence bookings, incident tracking, supply a
 They needed to streamline their booking management and, while there are many existing solutions, most of them are not very
 usable, having bugs or simply being very unintuitive to use.
 
-The idea for this project was take into account the specific needs of this residence network, while also
+The idea for this project was to take into account the specific needs of this residence network, while also
 scaling it and building a SaaS out of it. Because every residence has different needs, this piece of software
 is tailored to the requirements of every client, while always having a clean, easy-to-use interface that can
 be used from any kind of device: tablet, mobile or desktop.
+
+## Technologies used
 
 The project was initially designed in Javascript and JQuery, but was later rewritten in **React** and **Next.js**, following
 good design practices to dramatically improve maintainability. **Chakra UI** is used as the UI framework.
@@ -21,10 +23,12 @@ is currently hosted in **AWS**, using **DynamoDB** as the database.
 
 The code is currently privately hosted on GitLab, and uses **GitLab CI** to automate the deployment to AWS and Netlify.
 
+## Keeping the codebase maintainable as the project grows
+
 As always, maintainability is a priority. It's important to make use of React functional components to create
 easy-to-test pieces that can be reused across the code. 
 
-For example, this is part of the code for a confirmation modal –
+For example, this is the code for a confirmation modal –
 instead of creating a new component for every kind of confirmation modal, we can create a generic component that can be reused
 for all kinds of modals. This also makes it easier to test individual components.
 
