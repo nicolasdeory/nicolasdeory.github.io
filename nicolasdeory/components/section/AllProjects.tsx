@@ -14,7 +14,7 @@ export default function AllProjects() {
       <ProjectGrid>
         <SmallProject
           title="PianoLED"
-          url="/project/pianoled"
+          url="/project/piano-led"
           githubUrl="https://github.com/nicolasdeory/pianoLED"
           gradientStart="#0575E6"
           gradientEnd="#021B79"
@@ -63,6 +63,21 @@ export default function AllProjects() {
             <Tag>React</Tag>
             <Tag>Java</Tag>
             <Tag>Spring Boot</Tag>
+          </Project.Tags>
+        </SmallProject>
+        <SmallProject
+          title="Border Fish"
+          url="/project/border-fish"
+          gradientStart="#925FFF"
+          gradientEnd="#9546D3"
+        >
+          <Project.Description>
+            A <i>Papers, Please</i>-inspired game, awarded <i>Best Game</i> in JamToday Sevilla 2019. 
+          </Project.Description>
+          <Project.Tags>
+            <Tag variant="dark">Mobile game</Tag>
+            <Tag>Unity</Tag>
+            <Tag>C#</Tag>
           </Project.Tags>
         </SmallProject>
         <SmallProject
