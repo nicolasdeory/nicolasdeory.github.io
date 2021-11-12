@@ -5,13 +5,14 @@ githubUrl: https://github.com/nicolasdeory/firelight
 ---
 <BlogVideo id="2LdjV5tlQ6s" />
 
-Many RGB lighting integrations for games are already available, but the main goal of this project is improve the
-usability and ease of use for users, as well as make it available for as many devices as possible.
+Many RGB lighting integrations for games are already available, but the main goal of this project is to improve the
+usability and ease of use for users, as well as to make it available for as many devices as possible.
 
-Extensibility and modularity remain a priority; the idea is to design a layer that abstracts away the vendor-specific
+Extensibility and modularity remain a priority; the idea is to design a layer that abstracts away vendor-specific
 interfaces for lighting devices, as well as provide some common utils to create new modules from scratch in hours, rather than days.
 
-The project is written in C#, leveraging .NET Core for a small memory footprint and fast performance.
+## Technologies used
+The project is written in C#, leveraging .NET Core to achieve a small memory footprint and fast performance.
 
 This is what an example module looks like:
 ```csharp
@@ -71,10 +72,10 @@ public class BlinkWhiteModule : LEDModule
         }
     }
 ```
-
+## Creating game integrations for a wide range of peripherals
 The full API is still under construction so it's still subject to change, but the snippet above showcases the general idea.
-Because there is a very wide range of lighting devices in the market, instead of trying to support each of them invidiually,
-devices are classified into categories or **light zones**:
+Because there is a very wide range of lighting devices in the market, instead of trying to support each of them individually,
+peripherals are classified into categories or **light zones**:
 
 ```csharp
 public enum LightZone
@@ -94,19 +95,22 @@ public enum LightZone
 ```
 
 Each light zone contains a certain number of LEDs. For example, the **Keyboard** zone contains 109 LEDs, which
-is generally what regular RGB keyboards have, more or less. The **General** zone contains 5 LEDs, which allows
-addressing devices that don't fall into any ohe other categories, such as gaming chairs, PC cases, or monitors.
+is roughly how many regular RGB keyboards have. The **General** zone contains 5 LEDs, which allows
+addressing devices that don't fall into any of the other categories, such as gaming chairs, PC cases, or monitors.
 
 This architecture allows creating integrations for games in a very modular way:
 
 <BlogVideo id="ttoyAkmRKXA" />
 
-Lastly, there's a user interface that lets the user customize miscellaneous options, ranging from **game-specific settings**
-to **lighting effect customization** (i.e. what color the health bar should have, don't light up specific devices, etc.).
-The UI is written in HTML/CSS/Javascript, running inside .NET Core via [Chromely](https://github.com/chromelyapps/Chromely):
+## User Interface design
+There's a user interface that lets users customize miscellaneous options, ranging from **game-specific settings**
+to **lighting effect customization** (i.e. what color the health bar should have, disable light effects for specific devices, etc.).
+The UI is currently written in HTML/CSS/Javascript, running inside .NET Core via [Chromely](https://github.com/chromelyapps/Chromely),
+showcased below:
 
 <BlogVideo id="vAcOvXGdcn0" />
 
+## Featured at Razer DevCon
 I was also extremely humbled to have the support of peripheral manufacturer **Razer** very early into the project, 
 sending me a wide array of hardware to test effects with.
 I was also very happy and grateful to have the chance to showcase some of the game integrations in Razer DevCon 2021.
