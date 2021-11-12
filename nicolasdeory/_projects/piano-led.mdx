@@ -6,6 +6,8 @@ githubUrl: https://github.com/nicolasdeory/PianoLED
 As an avid piano player, I was inspired by videos on YouTube where the keys would light up
 based on the notes played. I wanted to replicate the same effect with a WS2812B LED strip and an Arduino Micro.
 
+## Lighting modes
+
 The program currently has the following lighting modes, rotating between them pressing a connected pushbutton.
 Optionally, the user can customize the effect by adjusting a potentiometer:
 
@@ -21,7 +23,10 @@ Optionally, the user can customize the effect by adjusting a potentiometer:
 This is a video showcasing **Palette mode** (mode 4):
 <BlogVideo id="qoUxJPY1hhI" />
 
+## Hardware used
+
 You can find a picture of the schematic below:
+
 ![Schematic](/projects/pianoled/schema.png)
 
 A custom PCB was designed for the project, after verifying that the wiring works with a rough prototype.
@@ -29,6 +34,8 @@ This simplified the wiring considerably and made it easier to deattach and reatt
 the LED strip and the MIDI cable. Everything was neatly packed in a 3D-printed box.
 
 ![PCB inside 3d-printed box](/projects/pianoled/pcb.jpg)
+
+## Challenges found
 
 Multiple challenges were found throughout the project, which spans several years. This gave me invaluable experience
 in PCB design, 3d-printing, but also the limitations of microcontrollers such as the ATmega32U4.
@@ -46,6 +53,7 @@ the issue is much less noticeable, but still happens ocassionally. The most idea
 to a more powerful board with more memory and processing power, such as the [Teensy](https://www.pjrc.com/teensy/index.html)
 or the [NodeMCU](https://nodemcu.readthedocs.io/en/master/).
 
+## Bottom line
 Feel free to [contact me](/contact-me) if you have any questions or comments, or if you'd like to make this for your keyboard.
 
 Here's another video showcasing **Velocity mode** (mode 5):
