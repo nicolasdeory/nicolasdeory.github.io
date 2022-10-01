@@ -11,6 +11,10 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faSadCry,
+  faSquareArrowUpRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef } from "react";
 import RevealInView from "../animation/RevealInView";
@@ -19,6 +23,7 @@ type ProjectProps = {
   isOdd?: boolean;
   title: string;
   url?: string;
+  readMoreUrl?: string;
   imageSrc?: string;
   children: JSX.Element[];
   githubUrl?: string;
@@ -35,6 +40,7 @@ const Tags = ({ children }) => {
 const Project = ({
   isOdd,
   title,
+  readMoreUrl,
   url,
   imageSrc,
   children,
@@ -56,14 +62,13 @@ const Project = ({
   }
 
   projectTagList = projectTagList.map((x, i) => {
-    if (i == 0)
-      return React.cloneElement(x, { key: i, mb: "5px" });
+    if (i == 0) return React.cloneElement(x, { key: i, mb: "5px" });
     else
       return React.cloneElement(x, {
         key: i,
         ml: isOdd ? "0" : "5px",
         mr: isOdd ? "5px" : "0",
-        mb: "5px"
+        mb: "5px",
       });
   });
 
@@ -81,9 +86,26 @@ const Project = ({
             flexDirection={isOdd ? "row-reverse" : "row"}
             align="center"
           >
-            <Heading fontSize="2xl" fontWeight="semibold">
-              {title}
-            </Heading>
+            {url ? (
+              <Link
+                href={url}
+                isExternal
+                display="flex"
+                alignItems="flex-end"
+                textDecoration="none"
+              >
+                <Heading fontSize="2xl" fontWeight="semibold">
+                  {title}
+                </Heading>
+                <Box ml="10px">
+                  <FontAwesomeIcon icon={faSquareArrowUpRight} />
+                </Box>
+              </Link>
+            ) : (
+              <Heading fontSize="2xl" fontWeight="semibold">
+                {title}
+              </Heading>
+            )}
             {githubUrl && (
               <Link
                 fontSize="xl"
@@ -108,7 +130,7 @@ const Project = ({
           <Text mt="10px" mb="10px">
             {projectDescription?.props.children}
           </Text>
-          <Link href={url}>Read more</Link>
+          <Link href={readMoreUrl}>Read more</Link>
         </Box>
         <Box position="relative" w="100%" mt="40px">
           <Image

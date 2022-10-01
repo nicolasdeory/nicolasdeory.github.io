@@ -1,25 +1,15 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  HStack,
-  Image,
-  Link,
-  Portal,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Link } from "@chakra-ui/react";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fs from "fs";
 import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
-import { useEffect, useState } from "react";
-import BlogSubtitle from "../../components/blog/BlogSubtitle";
 import BlogPostDisplay from "../../components/blog/BlogPostDisplay";
+import BlogSubtitle from "../../components/blog/BlogSubtitle";
 import Layout from "../../components/layout/Layout";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 interface BlogEntryProps {
   title: string;
@@ -37,7 +27,7 @@ export default function Post({
   title,
   description,
   date,
-  githubUrl
+  githubUrl,
 }: ProjectProps) {
   // TODO THE META DATE CREATED ISN'T SPECIFIED CORRECTLY
   return (
@@ -53,11 +43,7 @@ export default function Post({
           <HStack spacing="20px">
             <Heading>{title}</Heading>
             {githubUrl && (
-              <Link
-                fontSize="xl"
-                href={githubUrl}
-                isExternal
-              >
+              <Link fontSize="xl" href={githubUrl} isExternal>
                 <FontAwesomeIcon icon={faGithub} />
               </Link>
             )}
@@ -79,7 +65,9 @@ export const getStaticProps: GetStaticProps = async (props) => {
   const processedData = {
     title: data.title,
     description: data.description,
-    githubUrl: data.githubUrl??null,
+    githubUrl: data.githubUrl ?? null,
+    url: data.url ?? null,
+    date: data.date ?? new Date().toISOString().split("T")[0],
   };
   return {
     props: {

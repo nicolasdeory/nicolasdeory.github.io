@@ -1,0 +1,74 @@
+---
+title: Sevilla Metro
+description: Bringing visibility to advancements in the public transportation network of Seville.
+url: https://sevillametro.netlify.app/
+---
+
+![Sevilla metro view](/projects/sevilla-metro/thumbnail.png)
+
+Advancements in technology are not appreciated until you shine a light on them. A great example is the future Metro Line 3 in Seville, Spain.
+Funding has recently been secured for the construction of half of the line, but most inhabitants of the city are unaware of this.
+
+The project aims to bring visibility to the advancements in the public transportation network of the city.
+Three new lines are planned, as shown on the map below:
+
+![Metro map](/projects/sevilla-metro/map.png)
+
+In a nutshell, the website allows the user to select an origin and destination address.
+It will then calculate the shortest route to the destination, taking into account the new, still under construction metro line.
+
+The user gets an outline of the route steps, as well as a summary that indicates how much time is saved on the route
+with the new metro line compared to the time it would have taken with the current public transportation network.
+
+## Technologies used
+
+The project is built with **Next.js** and **Tailwind CSS** for the frontend.
+The backend also runs on Next.js, and consumes the **Google Maps API** to calculate routes.
+
+## Calculating routes including a non-existent line
+
+The Google Maps API unfortunately does not allow adding custom public transport lines to the map.
+In order to work around this key limitation and calculate the route including the new metro line,
+a custom algorithm had to be developed, which works as follows:
+
+1. Get coordinates for the origin and destination addresses using the **Google Geocoding API**
+1. Find the closest metro station to the origin using the **Google Distance Matrix API**
+1. Find the closest metro station to the destination
+1. Calculate the route from the origin to the first station using the **Google Directions API**
+   - Either on foot or by bus, depending on the distance
+1. Estimate the metro route duration from the origin station to the destination station
+   - Find the connecting station if a transfer between lines is needed
+   - Calculate the total time between the two stations using the average speed of the metro and a conservative estimate of the wait time at the station
+1. Calculate the route from the second station to the destination using **Directions API**
+
+This provides a rough estimate of what the route would look like when the new metro line is finally completed.
+
+This is a fragment of the routing code corresponding to the metro segment:
+
+```tsx
+const stops = Math.abs(indexDestination - indexOrigin);
+
+// 2 minutes to enter the station + 1.5 minutes per station + 2 minutes to exit
+const travelTime = stops * TRAVEL_TIME_PER_STATION;
+const totalTime = TIME_TO_ENTER_STATION * 2 + travelTime;
+```
+
+## Drawing on the map
+
+![Route view with transfer](/projects/sevilla-metro/route.png)
+
+**Leaflet** was used to render the map and draw paths, tooltips and other elements on it.
+The metro stops are represented in a JSON file, which is then used to draw the metro stations on the map.
+
+Here's a sample station:
+
+```json
+{
+  "name": "Prado de San Sebastián",
+  "coords": [37.380604, -5.987247],
+  "correspondence": "L3"
+}
+```
+
+For the route segments calculated using the Google Directions service, the API provides a polyline that
+can be drawn on the map with colors representing the different bus lines.

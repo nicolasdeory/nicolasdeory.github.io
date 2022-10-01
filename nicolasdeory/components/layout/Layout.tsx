@@ -40,7 +40,7 @@ export default function Layout({
           {metaCreated && (
             <meta
               name="date.created"
-              content={metaCreated.toString().split("T")[0]}
+              content={metaCreated.toISOString().split("T")[0]}
             />
           )}
         </Head>

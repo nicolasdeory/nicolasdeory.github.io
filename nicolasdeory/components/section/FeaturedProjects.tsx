@@ -11,7 +11,7 @@ export default function FeaturedProjects() {
           <Project
             title="Residence Management"
             imageSrc="/projects/residencemanagement.png"
-            url="/project/residence-management"
+            readMoreUrl="/project/residence-management"
           >
             <Project.Description>
               A custom residence management solution that simplifies bookings,
@@ -27,9 +27,29 @@ export default function FeaturedProjects() {
             </Project.Tags>
           </Project>
           <Project
+            title="Sevilla Metro"
+            imageSrc="/projects/sevilla-metro/thumbnail.png"
+            readMoreUrl="/project/sevilla-metro"
+            url="https://sevillametro.netlify.app/"
+            // Repo is still private
+          >
+            <Project.Description>
+              A webapp that demonstrates how much shorter journeys in Seville
+              would be, when using metro lines that are still under
+              construction.
+            </Project.Description>
+            <Project.Tags>
+              <Tag variant="dark">Web app</Tag>
+              <Tag>React & Next.js</Tag>
+              <Tag>Typescript</Tag>
+              <Tag>Tailwind CSS</Tag>
+              <Tag>Google Maps</Tag>
+            </Project.Tags>
+          </Project>
+          <Project
             title="Project Firelight"
             imageSrc="/projects/firelight1.png"
-            url="/project/firelight"
+            readMoreUrl="/project/firelight"
             githubUrl="https://github.com/nicolasdeory/firelight"
           >
             <Project.Description>
@@ -40,22 +60,6 @@ export default function FeaturedProjects() {
               <Tag variant="dark">Desktop app</Tag>
               <Tag>.NET Core C#</Tag>
               <Tag>Chromely</Tag>
-            </Project.Tags>
-          </Project>
-          <Project
-            title="Firelight RGB"
-            imageSrc="/projects/firelightapp1.png"
-            url="/project/firelight-app"
-          >
-            <Project.Description>
-              An app designed to control Firelight LED strips, providing
-              powerful, customized lighting effects through a user-friendly
-              interface.
-            </Project.Description>
-            <Project.Tags>
-              <Tag variant="dark">Mobile app</Tag>
-              <Tag>React Native</Tag>
-              <Tag>NativeBase</Tag>
             </Project.Tags>
           </Project>
         </OddChildrenAlignment>
