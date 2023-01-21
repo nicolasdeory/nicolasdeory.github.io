@@ -13,6 +13,7 @@ import { Field, Form, Formik, FormikProps } from "formik";
 import * as Scroll from "react-scroll";
 import * as Yup from "yup";
 import Section from "./Section";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -31,10 +32,12 @@ const encode = (data) => {
 };
 
 export default function ContactMe() {
-
   const toast = useToast();
 
-  function submitForm(values, { setSubmitting, resetForm }: FormikProps<typeof ContactFormSchema>) {
+  function submitForm(
+    values,
+    { setSubmitting, resetForm }: FormikProps<typeof ContactFormSchema>
+  ) {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -83,7 +86,7 @@ export default function ContactMe() {
               display: "flex",
               justifyContent: "center",
             }}
-            name='contact'
+            name="contact"
             data-netlify
             data-netlify-honeypot="message-more"
             data-netlify-recaptcha="true"
@@ -143,8 +146,27 @@ export default function ContactMe() {
                   </FormControl>
                 )}
               </Field>
+              <Field name="g-recaptcha-response">
+                {({ field, form }) => (
+                  <FormControl
+                  // isInvalid={form.errors.message && form.touched.message}
+                  >
+                    <ReCAPTCHA
+                      {...field}
+                      id="g-recaptcha-response"
+                      sitekey="6LdPihYkAAAAAMo6dU8QFh7JEoWI_0p3k4wJzb1n"
+                    />
+                    <FormErrorMessage>{form.errors.message}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
               <div data-netlify-recaptcha="true"></div>
-              <Button variant="dark" type="submit" size="lg" isLoading={isSubmitting}>
+              <Button
+                variant="dark"
+                type="submit"
+                size="lg"
+                isLoading={isSubmitting}
+              >
                 Send message
               </Button>
             </VStack>
