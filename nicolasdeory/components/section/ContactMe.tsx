@@ -23,6 +23,7 @@ const ContactFormSchema = Yup.object().shape({
     .trim(),
   name: Yup.string().required("Name is required").max(100).trim(),
   message: Yup.string().required("Message is required").max(1000).trim(),
+  "g-recaptcha-response": Yup.string().required("Please verify you are not a robot"),
 });
 
 const encode = (data) => {
@@ -149,7 +150,7 @@ export default function ContactMe() {
               <Field name="g-recaptcha-response">
                 {({ field, form }) => (
                   <FormControl
-                  // isInvalid={form.errors.message && form.touched.message}
+                  isInvalid={form.errors['g-recaptcha-response'] && form.touched['g-recaptcha-response']}
                   >
                     <ReCAPTCHA
                       {...field}
