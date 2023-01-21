@@ -86,6 +86,7 @@ export default function ContactMe() {
             name='contact'
             data-netlify
             data-netlify-honeypot="message-more"
+            data-netlify-recaptcha="true"
           >
             <VStack align="stretch" spacing="20px" maxW="800px" w="100%">
               <Field name="email">
@@ -142,6 +143,7 @@ export default function ContactMe() {
                   </FormControl>
                 )}
               </Field>
+              <div data-netlify-recaptcha="true"></div>
               <Button variant="dark" type="submit" size="lg" isLoading={isSubmitting}>
                 Send message
               </Button>
