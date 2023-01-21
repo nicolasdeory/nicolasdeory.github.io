@@ -4,6 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Text,
   Textarea,
   useColorModeValue,
   useToast,
@@ -14,6 +15,7 @@ import * as Scroll from "react-scroll";
 import * as Yup from "yup";
 import Section from "./Section";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useRef } from "react";
 
 const ContactFormSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,7 +25,7 @@ const ContactFormSchema = Yup.object().shape({
     .trim(),
   name: Yup.string().required("Name is required").max(100).trim(),
   message: Yup.string().required("Message is required").max(1000).trim(),
-  "g-recaptcha-response": Yup.string().required("Please verify you are not a robot"),
+  recaptcha: Yup.string().required("Please verify you are not a robot"),
 });
 
 const encode = (data) => {
@@ -35,6 +37,8 @@ const encode = (data) => {
 export default function ContactMe() {
   const toast = useToast();
 
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
   function submitForm(
     values,
     { setSubmitting, resetForm }: FormikProps<typeof ContactFormSchema>
@@ -45,6 +49,7 @@ export default function ContactMe() {
       body: encode({
         "form-name": "contact",
         ...values,
+        "g-recaptcha-response": values.recaptcha,
       }),
     })
       .then(() => {
@@ -57,6 +62,7 @@ export default function ContactMe() {
           variant: "solid",
         });
         resetForm();
+        recaptchaRef.current.reset();
         setSubmitting(false);
       })
       .catch((error) => {
@@ -76,11 +82,11 @@ export default function ContactMe() {
   return (
     <Section title="Contact me" id="contact-me" sectionAbove="All projects">
       <Formik
-        initialValues={{ email: "", name: "", message: "" }}
+        initialValues={{ email: "", name: "", message: "", recaptcha: "" }}
         onSubmit={submitForm}
         validationSchema={ContactFormSchema}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, errors, values, setFieldValue }) => (
           <Form
             style={{
               width: "100%",
@@ -147,21 +153,25 @@ export default function ContactMe() {
                   </FormControl>
                 )}
               </Field>
-              <Field name="g-recaptcha-response">
+              <Field name="recaptcha">
                 {({ field, form }) => (
-                  <FormControl
-                  isInvalid={form.errors['g-recaptcha-response'] && form.touched['g-recaptcha-response']}
-                  >
+                  <>
                     <ReCAPTCHA
-                      {...field}
-                      id="g-recaptcha-response"
+                      id="recaptcha"
+                      ref={recaptchaRef}
+                      onChange={(response) => {
+                        setFieldValue("recaptcha", response);
+                      }}
                       sitekey="6LdakhYkAAAAAMqOaSGazpX6IZ4fLMRjhaxfa9Mz"
                     />
-                    <FormErrorMessage>{form.errors.message}</FormErrorMessage>
-                  </FormControl>
+                    {form.errors.recaptcha && (
+                      <Text color="red.600" fontSize="sm">
+                        {form.errors.recaptcha}
+                      </Text>
+                    )}
+                  </>
                 )}
               </Field>
-              <div data-netlify-recaptcha="true"></div>
               <Button
                 variant="dark"
                 type="submit"
