@@ -154,7 +154,7 @@ export default function ContactMe() {
                     <ReCAPTCHA
                       {...field}
                       id="g-recaptcha-response"
-                      sitekey="6LdPihYkAAAAAMo6dU8QFh7JEoWI_0p3k4wJzb1n"
+                      sitekey="6LdakhYkAAAAAMqOaSGazpX6IZ4fLMRjhaxfa9Mz"
                     />
                     <FormErrorMessage>{form.errors.message}</FormErrorMessage>
                   </FormControl>
