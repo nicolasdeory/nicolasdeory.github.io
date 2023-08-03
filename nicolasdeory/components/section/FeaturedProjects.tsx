@@ -9,6 +9,22 @@ export default function FeaturedProjects() {
       <VStack w="100%" maxW="1000px" spacing="100px">
         <OddChildrenAlignment>
           <Project
+            title="El Rosco"
+            imageSrc="/projects/rosco/roscohero.png"
+            readMoreUrl="/project/rosco"
+          >
+            <Project.Description>
+              A mobile app consisting in a word-guessing game, powered by speech
+              recognition, available in Spanish for iOS and Android devices.
+            </Project.Description>
+            <Project.Tags>
+              <Tag variant="dark">iOS & Android App</Tag>
+              <Tag>React Native</Tag>
+              <Tag>RN Skia</Tag>
+              <Tag>Firebase</Tag>
+            </Project.Tags>
+          </Project>
+          <Project
             title="Residence Management"
             imageSrc="/projects/residencemanagement.png"
             readMoreUrl="/project/residence-management"
