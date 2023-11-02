@@ -30,6 +30,23 @@ export default function AllProjects() {
           </Project.Tags>
         </SmallProject>
         <SmallProject
+          title="Aprende Andaluz"
+          url="/project/aprende-andaluz"
+          gradientStart="#CAF2D1"
+          gradientEnd="#AECFBC"
+        >
+          <Project.Description>
+          An informational mobile app about the andalusian dialect, that
+          features a translator that transcribes spanish text to the andalusian pronunciation,
+          as well as an AI Text-to-Speech engine with the andalusian accent.
+          </Project.Description>
+          <Project.Tags>
+            <Tag variant="dark">Swift</Tag>
+            <Tag>SwiftUI</Tag>
+            <Tag>Java</Tag>
+          </Project.Tags>
+        </SmallProject>
+        <SmallProject
           title="Moovid"
           url="/project/moovid"
           githubUrl="https://github.com/nicolasdeory/moovid"
