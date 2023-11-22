@@ -3,6 +3,7 @@ import { createBreakpoints, mode } from "@chakra-ui/theme-tools";
 import tinycolor from "tinycolor2";
 
 const colMode = (props) => mode("light", "dark")(props);
+const invertedColMode = (props) => mode("dark", "light")(props);
 
 const config: ThemeConfig = {
   initialColorMode: "light",
@@ -78,6 +79,17 @@ const Link = {
         color: colMode(props) + ".link.active",
       },
     }),
+    alwaysdark: (props) => ({
+      color: "dark.text.body",
+      fontWeight: "semibold",
+      _hover: {
+        color: "dark.link.hover",
+        textDecoration: "none",
+      },
+      _active: {
+        color: "dark.link.active",
+      },
+    }),
   },
   defaultProps: {
     variant: "darkunderline",
@@ -108,7 +120,13 @@ const Tag = {
         color: colMode(props) + ".button.dark.color",
         bg: colMode(props) + ".button.dark.bg"
       }
-    })
+    }),
+    alwaysdark: (props) => ({
+      container: {
+        color: "dark.button.dark.color",
+        bg: "dark.button.dark.bg"
+      }
+    }),
   }
 }
 
@@ -141,6 +159,8 @@ const theme = extendTheme({
           bg: "#444"
         }
       },
+      marqueeOverlay: tinycolor(bgColorDark)
+      .darken(3).setAlpha(0.9).toString(),
       button: {
         dark: {
           color: "white",
@@ -188,6 +208,8 @@ const theme = extendTheme({
           bg: tinycolor(darkAccent).toString()
         }
       },
+      marqueeOverlay: tinycolor(bgColorDark)
+      .darken(3).setAlpha(0.9).toString(),
       button: {
         dark: {
           color: "#222",
