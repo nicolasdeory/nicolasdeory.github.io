@@ -83,7 +83,7 @@ export default function Home({posts}) {
       </InView>
       <VStack mt="200px" spacing="200px">
         <FeaturedProjects />
-        <AllProjects />
+        {/* <AllProjects /> */}
         <Blog posts={posts} />
         <ContactMe />
       </VStack>

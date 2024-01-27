@@ -29,7 +29,7 @@ export default function AllProjects() {
             <Tag>3D Printing</Tag>
           </Project.Tags>
         </SmallProject>
-        <SmallProject
+        {/* <SmallProject
           title="Aprende Andaluz"
           url="/project/aprende-andaluz"
           gradientStart="#CAF2D1"
@@ -45,7 +45,7 @@ export default function AllProjects() {
             <Tag>SwiftUI</Tag>
             <Tag>Java</Tag>
           </Project.Tags>
-        </SmallProject>
+        </SmallProject> */}
         <SmallProject
           title="Moovid"
           url="/project/moovid"

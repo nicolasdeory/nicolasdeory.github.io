@@ -15,6 +15,7 @@ type SectionProps = {
   id: string;
   sectionAbove?: string;
   children?: JSX.Element | JSX.Element[];
+  invisibleTitle?: boolean;
 };
 
 export default function Section({
@@ -22,6 +23,7 @@ export default function Section({
   children,
   id,
   sectionAbove,
+  invisibleTitle,
   ...props
 }: SectionProps & BoxProps) {
   const headingSize = useBreakpointValue({ base: "lg", md: "xl", lg: "2xl" });
@@ -31,15 +33,18 @@ export default function Section({
   return (
     <Box {...props} w="100%">
       <Element name={id} />
-      <Heading align="center" fontWeight="900" size={headingSize}>
-        {title}
-      </Heading>
+      {!invisibleTitle && (
+        <Heading align="center" fontWeight="900" size={headingSize}>
+          {title}
+        </Heading>
+      )}
       <Waypoint
         onEnter={() => {
           setHeaderBreadcrumb(title);
         }}
         onLeave={(v) => {
-          if (v.currentPosition === Waypoint.below) setHeaderBreadcrumb(sectionAbove);
+          if (v.currentPosition === Waypoint.below)
+            setHeaderBreadcrumb(sectionAbove);
         }}
       />
       <Flex

@@ -5,7 +5,7 @@ import Section from "./Section";
 
 export default function Blog({posts}) {
   return (
-    <Section title="Blog" id="blog" sectionAbove="All projects">
+    <Section title="Blog" id="blog" sectionAbove="Featured projects">
       <VStack
         align={{ base: "center", md: "stretch" }}
         w="100%"

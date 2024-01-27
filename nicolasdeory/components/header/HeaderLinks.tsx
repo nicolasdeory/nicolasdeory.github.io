@@ -29,7 +29,7 @@ export default function HeaderLinks({
       <HeaderLink
         to="projects"
         onClick={onHeaderLinkClicked}
-        href={isMainPage ? null : "/"}
+        href={"/projects"}
       >
         Projects
       </HeaderLink>
