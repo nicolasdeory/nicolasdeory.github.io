@@ -37,6 +37,24 @@ export default function FeaturedProjects() {
   const children = [
     <ChildComponent
       key="1"
+      title="Semana"
+      imageSrc="/projects/semana/hero.png"
+      readMoreUrl="/project/semana"
+    >
+      <ChildComponent.Description>
+        A mobile app to plan your household meals. Create weekly meal plans,
+        save all your recipes, keep a smart shopping list and share with your
+        family.
+      </ChildComponent.Description>
+      <ChildComponent.Tags>
+        <Tag variant="dark">iOS & Android App</Tag>
+        <Tag>React Native</Tag>
+        <Tag>Postgres</Tag>
+        <Tag>Revenuecat</Tag>
+      </ChildComponent.Tags>
+    </ChildComponent>,
+    <ChildComponent
+      key="2"
       title="El Rosco"
       imageSrc="/projects/rosco/roscohero.png"
       readMoreUrl="/project/rosco"
@@ -53,7 +71,7 @@ export default function FeaturedProjects() {
       </ChildComponent.Tags>
     </ChildComponent>,
     <ChildComponent
-      key="2"
+      key="3"
       title="Residence Management"
       imageSrc="/projects/residencemanagement.png"
       readMoreUrl="/project/residence-management"
@@ -72,7 +90,7 @@ export default function FeaturedProjects() {
       </ChildComponent.Tags>
     </ChildComponent>,
     <ChildComponent
-      key="3"
+      key="4"
       title="Sevilla Metro"
       imageSrc="/projects/sevilla-metro/thumbnail.png"
       readMoreUrl="/project/sevilla-metro"
@@ -92,7 +110,7 @@ export default function FeaturedProjects() {
       </ChildComponent.Tags>
     </ChildComponent>,
     <ChildComponent
-      key="4"
+      key="5"
       title="Project Firelight"
       imageSrc="/projects/firelight1.png"
       readMoreUrl="/project/firelight"
@@ -109,7 +127,7 @@ export default function FeaturedProjects() {
       </ChildComponent.Tags>
     </ChildComponent>,
     <ChildComponent
-      key="5"
+      key="6"
       title="Aprende Andaluz"
       imageSrc="/projects/aprende-andaluz/andaluzhero.png"
       readMoreUrl="/project/aprende-andaluz"

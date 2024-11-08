@@ -20,6 +20,23 @@ export default function ProjectsPage() {
       <VStack w="100%" maxW="1000px" spacing="100px">
         <OddChildrenAlignment>
           <Project
+            title="Semana"
+            imageSrc="/projects/semana/hero.png"
+            readMoreUrl="/project/semana"
+          >
+            <Project.Description>
+              A mobile app to plan your household meals. Create weekly meal plans,
+              save all your recipes, keep a smart shopping list and share with
+              your family.
+            </Project.Description>
+            <Project.Tags>
+              <Tag variant="dark">iOS & Android App</Tag>
+              <Tag>React Native</Tag>
+              <Tag>Postgres</Tag>
+              <Tag>Revenuecat</Tag>
+            </Project.Tags>
+          </Project>
+          <Project
             title="El Rosco"
             imageSrc="/projects/rosco/roscohero.png"
             readMoreUrl="/project/rosco"
@@ -75,7 +92,7 @@ export default function ProjectsPage() {
             imageSrc="/projects/sevilla-metro/thumbnail.png"
             readMoreUrl="/project/sevilla-metro"
             url="https://sevillametro.netlify.app/"
-            // Repo is still private
+          // Repo is still private
           >
             <Project.Description>
               A webapp that demonstrates how much shorter journeys in Seville
