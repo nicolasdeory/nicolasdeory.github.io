@@ -30,16 +30,8 @@ export default function AboutMe() {
             the <i>Institut Supérieur d’Electronique de Paris</i>.
           </Text>
           <Text>
-            Throughout these years my main focus has been on experimenting and
-            learning different technologies with the main goal of creating{" "}
-            <b>robust, reliable and maintainable code</b>, while always striving
-            to <b>create value</b> for the client.
-          </Text>
-          <Text>
-            I’m especially passionate about building products from the ground
-            up, actively participating from the earliest stages of{" "}
-            <b>product design</b>, and always aiming for <b>excellent UX</b> for
-            the end user.
+            I'm a generalist engineer who loves participating in the earliest
+            stages of <b>product design</b> and creating delightful experiences that <b>empower people</b>.
           </Text>
           <Text>
             Thanks for dropping by! If you have any questions, feel free to{" "}
