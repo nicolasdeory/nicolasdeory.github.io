@@ -29,7 +29,7 @@ export default function HeroDescription() {
             I&apos;m a Software Engineer from Spain.
             <br />I am passionate about building products from the ground up.
           </Text>
-          <Text textAlign="justify">
+{/*           <Text textAlign="justify">
             My contributions in projects are focused around{" "}
             <Text as="span" fontWeight="semibold">
               Fullstack & Mobile Development
@@ -39,7 +39,7 @@ export default function HeroDescription() {
               UI/UX design
             </Text>
             .
-          </Text>
+          </Text> */}
           <Text textAlign="justify">
             Feel free to poke around and{" "}
             <LinkScroll to="contact-me" variant="darkunderline">shoot me a message</LinkScroll> if you have any
