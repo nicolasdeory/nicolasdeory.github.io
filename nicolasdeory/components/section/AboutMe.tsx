@@ -30,7 +30,7 @@ export default function AboutMe() {
             the <i>Institut Supérieur d’Electronique de Paris</i>.
           </Text>
           <Text>
-            I'm a generalist engineer who loves participating in the earliest
+            I&apos;m a generalist engineer who loves participating in the earliest
             stages of <b>product design</b> and creating delightful experiences that <b>empower people</b>.
           </Text>
           <Text>
