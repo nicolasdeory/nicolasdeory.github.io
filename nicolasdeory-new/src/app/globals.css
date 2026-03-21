@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  /* Paper + ink */
+  --background: #faf9f7;
+  --foreground: #111111;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --background: #1c1b19;
+    --foreground: #eceae8;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+/* Display / name only — Instrument Serif from @fontsource */
+.font-display {
+  font-family: "Instrument Serif", Georgia, serif;
+}
+
+/* Nav / chrome: body color, underline only on hover */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Links inside page copy — always underlined, separate from nav */
+article a {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+article a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1.5px;
+}
