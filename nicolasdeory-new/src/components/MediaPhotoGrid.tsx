@@ -22,8 +22,13 @@ export function MediaPhotoGrid({
   const [open, setOpen] = useState<ListBlobResultBlob | null>(null);
   const [mounted, setMounted] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [lightboxZoom, setLightboxZoom] = useState(false);
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    setLightboxZoom(false);
+  }, [open?.pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -111,17 +116,40 @@ export function MediaPhotoGrid({
           onClick={() => setOpen(null)}
         >
           <div
-            className="relative mx-auto h-[calc(100dvh-6rem)] w-full max-w-[min(100vw,100dvh)]"
+            className="relative mx-auto h-[calc(100dvh-6rem)] w-full max-w-[min(100vw,100dvh)] overflow-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={open.url}
-              alt={labelFromPathname(open.pathname) || "Photograph"}
-              fill
-              className="object-contain"
-              sizes="100vw"
-              priority
-            />
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxZoom((z) => !z);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setLightboxZoom((z) => !z);
+                }
+              }}
+              className={`relative ${
+                lightboxZoom
+                  ? "h-[200%] w-[200%] cursor-zoom-out"
+                  : "h-full w-full cursor-zoom-in"
+              }`}
+              aria-label={lightboxZoom ? "Zoom out" : "Zoom in (2×)"}
+              aria-pressed={lightboxZoom}
+            >
+              <Image
+                src={open.url}
+                alt={labelFromPathname(open.pathname) || "Photograph"}
+                fill
+                className="pointer-events-none object-contain"
+                sizes="100vw"
+                priority
+                unoptimized
+              />
+            </div>
           </div>
         </div>
       </div>,
