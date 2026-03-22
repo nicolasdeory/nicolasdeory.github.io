@@ -28,7 +28,7 @@ export default function AboutPage() {
           <p>
             Outside work I dance flamenco and play music. I started dancing in
             2025 and I&apos;m currently learning at Theatre Flamenco. I started
-            playing piano in 2008 and it&apos;s what I play primarily.
+            playing piano in 2008 and that&apos;s what I play primarily.
           </p>
         </div>
       </article>
